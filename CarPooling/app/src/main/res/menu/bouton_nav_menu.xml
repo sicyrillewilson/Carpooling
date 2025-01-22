@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/icon_accueil"
+        android:title="Home"
+        android:fontFamily="serif"
+        android:textStyle="bold"/>
+    <item
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/icon_accueil"
+        android:title="Chat"
+        android:fontFamily="serif"
+        android:textStyle="bold"/>
+    <item
+        android:id="@+id/nav_chauffeurs"
+        android:icon="@drawable/icon_accueil"
+        android:title="Chauffeurs"
+        android:fontFamily="serif"
+        android:textStyle="bold"/>
+    <item
+        android:id="@+id/nav_historique"
+        android:icon="@drawable/icon_accueil"
+        android:title="Historique"
+        android:fontFamily="serif"
+        android:textStyle="bold"/>
+</menu>
