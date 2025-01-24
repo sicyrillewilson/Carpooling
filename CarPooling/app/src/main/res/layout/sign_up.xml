@@ -30,6 +30,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp">
                 <EditText
+                    android:id="@+id/sign_up_nom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:text="Nom..."/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp">
+                <EditText
                     android:id="@+id/sign_up_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -37,26 +48,15 @@
                     android:text="Email..."/>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/sign_up_mot_de_passe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp">
                 <EditText
+                    android:id="@+id/sign_up_mot_de_passe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:text="Mot de passe.."/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp">
-                <EditText
-                    android:id="@+id/sign_up_confirmer_mot_de_passe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:text="Confirmer le mot de passe..."/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -101,14 +101,14 @@
             android:layout_marginVertical="10dp">
             <TextView
                 android:id="@+id/sign_up_deja_un_compte"
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:gravity="center"
                 android:text="Vous avez déjà un compte ? " />
             <TextView
                 android:id="@+id/sign_up_se_connecter"
-                android:layout_width="match_parent"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:gravity="center"
