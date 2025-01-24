@@ -30,17 +30,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp">
                 <EditText
-                    android:id="@+id/sign_up_nom"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:text="Nom..."/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp">
-                <EditText
                     android:id="@+id/sign_up_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -57,6 +46,17 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:text="Mot de passe.."/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp">
+                <EditText
+                    android:id="@+id/sign_up_confirmer_mot_de_passe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:text="Confirmer le mot de passe..."/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

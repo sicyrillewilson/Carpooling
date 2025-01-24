@@ -19,8 +19,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="91dp">
-
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/itm_trajet3_conducteur_info"
@@ -39,23 +38,24 @@
                     android:layout_height="70dp"
                     android:background="@drawable/circle_shape"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/icon_accueil" />
+                    android:layout_margin="5dp"/>
 
                 <LinearLayout
                     android:id="@+id/starContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:gravity="center"
                     android:minWidth="70dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
 
                     <ImageView
                         android:id="@+id/itm_trajet3_star"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:background="@drawable/circle_shape"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/icon_accueil" />
+                        android:src="@drawable/star" />
 
                 </LinearLayout>
 
@@ -70,12 +70,16 @@
                 app:layout_constraintRight_toLeftOf="@id/itm_trajet3_conducteur_info"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_margin="5dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp">
                     <TextView
+                        android:textStyle="bold"
                         android:id="@+id/itm_trajet3_zone_de_depart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -86,9 +90,11 @@
                     android:id="@+id/itm_trajet3_lieu_de_depart_lay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
 
                     <TextView
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Lieu de départ : " />
@@ -105,9 +111,11 @@
                     android:id="@+id/itm_trajet3_heure_de_depart_lay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
 
                     <TextView
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Heure : " />
@@ -124,9 +132,11 @@
                     android:id="@+id/itm_trajet3_prix_lay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
 
                     <TextView
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Prix : " />
