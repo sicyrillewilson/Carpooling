@@ -34,7 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
-                    android:text="Email..."/>
+                    android:hint="Email..."/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
-                    android:text="Mot de passe.."/>
+                    android:hint="Mot de passe.."/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,17 +56,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
-                    android:text="Confirmer le mot de passe..."/>
+                    android:hint="Confirmer le mot de passe..."/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp">
                 <Button
+
+                    android:fontFamily="@font/itc_eras_bold"
                     android:id="@+id/sign_up_valider"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
+                    android:textSize="20dp"
                     android:text="Valider"/>
             </LinearLayout>
             <LinearLayout
@@ -98,19 +101,22 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginVertical="10dp">
+            android:layout_marginHorizontal="30dp">
             <TextView
                 android:id="@+id/sign_up_deja_un_compte"
-                android:layout_width="220dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
+                android:layout_marginHorizontal="3dp"
                 android:gravity="center"
                 android:text="Vous avez déjà un compte ? " />
             <TextView
+                android:fontFamily="@font/itc_eras_bold"
                 android:id="@+id/sign_up_se_connecter"
-                android:layout_width="130dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
+                android:layout_marginHorizontal="3dp"
                 android:gravity="center"
                 android:text="Se connecter"/>
         </LinearLayout>
