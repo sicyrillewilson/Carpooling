@@ -8,6 +8,36 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:gravity="center"
+            android:layout_marginVertical="15dp"
+            android:layout_marginStart="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/chat_layout_retour"
+                android:backgroundTint="@color/black"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/angle_small_left"/>
+
+            <TextView
+                android:gravity="center|start"
+                android:paddingHorizontal="10dp"
+                android:id="@+id/chat_layout_nom_chauffeur"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_weight="1"
+                android:text="Prenom du chauffeur"
+                android:textSize="15sp"
+                android:background="@color/transaprent"/>
+
+        </LinearLayout>
+
         <!-- Liste des messages -->
         <ListView
             android:id="@+id/chat_layout_lv_messages"
@@ -24,21 +54,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="8dp"
+            android:paddingHorizontal="8dp"
             android:background="@drawable/contour_circulaire_message">
 
 
             <ImageView
                 android:layout_margin="5dp"
                 android:id="@+id/chat_layout_chat"
-                android:layout_width="35dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:background="@drawable/chat"/>
 
             <EditText
-                android:paddingHorizontal="30dp"
+                android:paddingHorizontal="10dp"
                 android:id="@+id/chat_layout_message"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:layout_weight="1"
@@ -49,8 +79,8 @@
             <ImageView
                 android:layout_margin="5dp"
                 android:id="@+id/chat_layout__send"
-                android:layout_width="35dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="20dp"
                 android:background="@drawable/send"/>
 
         </LinearLayout>

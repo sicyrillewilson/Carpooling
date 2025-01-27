@@ -27,6 +27,18 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(HomeFragment())
                     true
                 }
+                R.id.nav_chat -> {
+                    loadFragment(HomeFragment())
+                    true
+                }
+                R.id.nav_chauffeurs -> {
+                    loadFragment(HomeFragment())
+                    true
+                }
+                R.id.nav_historique -> {
+                    loadFragment(HomeFragment())
+                    true
+                }
                 else -> false
             }
         }
