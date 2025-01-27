@@ -44,7 +44,7 @@
                 android:layout_weight="1"
                 android:hint="Message.."
                 android:inputType="text"
-                android:background="@color/white"/>
+                android:background="@color/transaprent"/>
 
             <ImageView
                 android:layout_margin="5dp"

@@ -7,13 +7,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
             <ImageView
+                android:layout_margin="10dp"
                 android:id="@+id/reserver_place_voiture_icon"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
@@ -25,6 +27,9 @@
             android:layout_height="wrap_content"
             android:gravity="center">
             <TextView
+                android:layout_margin="10dp"
+                android:textSize="25dp"
+                android:fontFamily="@font/itc_eras_bold"
                 android:id="@+id/reserver_place_lieu_depart_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,6 +47,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textSize="17dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lieu de départ : "
@@ -49,6 +57,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <TextView
+                    android:layout_margin="5dp"
+                    android:textSize="17dp"
                     android:id="@+id/reserver_place_lieu_depart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,6 +73,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textSize="17dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Heure : "
@@ -70,6 +83,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <TextView
+                    android:layout_margin="5dp"
+                    android:textSize="17dp"
                     android:id="@+id/reserver_place_heure_depart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -84,6 +99,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textSize="17dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Prix : "
@@ -92,6 +110,8 @@
                     app:layout_constraintLeft_toLeftOf="parent"/>
 
                 <TextView
+                    android:layout_margin="5dp"
+                    android:textSize="17dp"
                     android:id="@+id/reserver_place_prix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -106,6 +126,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textSize="17dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Note : "
@@ -113,6 +136,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <LinearLayout
+                    android:layout_margin="5dp"
                     android:id="@+id/starContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -142,6 +166,9 @@
             android:layout_height="wrap_content"
             android:gravity="center">
             <TextView
+                android:layout_margin="10dp"
+                android:textSize="25dp"
+                android:fontFamily="@font/itc_eras_bold"
                 android:id="@+id/reserver_place_infos_chauffeur"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -159,6 +186,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textSize="17dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nom : "
@@ -166,6 +196,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <TextView
+                    android:layout_margin="5dp"
+                    android:textSize="17dp"
                     android:id="@+id/reserver_place_nom_chauffeur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -180,6 +212,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textSize="17dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Prénom : "
@@ -187,6 +222,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <TextView
+                    android:layout_margin="5dp"
+                    android:textSize="17dp"
                     android:id="@+id/reserver_place_prenom_chauffeur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -201,6 +238,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textSize="17dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Numéro : "
@@ -208,6 +248,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <TextView
+                    android:layout_margin="5dp"
+                    android:textSize="17dp"
                     android:id="@+id/reserver_place_numero_chauffeur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -223,12 +265,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <Button
+                    android:layout_marginVertical="10dp"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/itc_eras_bold"
+                    android:background="@drawable/contour_circulaire"
                     android:id="@+id/reserver_place_reserver_place"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -238,6 +285,7 @@
                     android:text="Réserver une place"/>
 
                 <LinearLayout
+                    android:layout_marginHorizontal="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
@@ -253,6 +301,8 @@
                         android:src="@drawable/chat"
                         android:layout_gravity="center"/>
                     <TextView
+                        android:textSize="17dp"
+                        android:fontFamily="@font/itc_eras_bold"
                         android:id="@+id/reserver_place_chat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -268,6 +318,9 @@
             android:layout_height="wrap_content"
             android:gravity="center">
             <TextView
+                android:layout_marginVertical="10dp"
+                android:textSize="20dp"
+                android:fontFamily="@font/itc_eras_bold"
                 android:id="@+id/reserver_place_autres_trajets_disponibles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -277,12 +330,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingVertical="5dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reserver_place_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
