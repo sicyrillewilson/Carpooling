@@ -10,7 +10,7 @@
 
         <!-- Liste des messages -->
         <ListView
-            android:id="@+id/lv_messages"
+            android:id="@+id/chat_layout_lv_messages"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -19,25 +19,39 @@
 
         <!-- Zone de saisie et envoi de message -->
         <LinearLayout
+            android:gravity="center"
+            android:layout_margin="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:background="@drawable/contour_circulaire_message">
+
+
+            <ImageView
+                android:layout_margin="5dp"
+                android:id="@+id/chat_layout_chat"
+                android:layout_width="35dp"
+                android:layout_height="30dp"
+                android:background="@drawable/chat"/>
 
             <EditText
-                android:id="@+id/et_message"
+                android:paddingHorizontal="30dp"
+                android:id="@+id/chat_layout_message"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:layout_weight="1"
                 android:hint="Message.."
-                android:inputType="text" />
+                android:inputType="text"
+                android:background="@color/white"/>
 
-            <Button
-                android:id="@+id/btn_send"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Envoyer" />
+            <ImageView
+                android:layout_margin="5dp"
+                android:id="@+id/chat_layout__send"
+                android:layout_width="35dp"
+                android:layout_height="30dp"
+                android:background="@drawable/send"/>
 
         </LinearLayout>
 
