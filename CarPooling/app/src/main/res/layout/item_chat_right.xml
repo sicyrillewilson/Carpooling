@@ -23,8 +23,7 @@
                 android:layout_height="wrap_content"
                 android:text="00:00"
                 android:layout_weight="1"
-                android:id="@+id/timeView"
-                android:textStyle="italic"/>
+                android:id="@+id/timeView"/>
         </LinearLayout>
 
         <LinearLayout
