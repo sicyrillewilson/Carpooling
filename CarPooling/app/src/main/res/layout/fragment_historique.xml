@@ -12,21 +12,25 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp">
             <TextView
-                android:id="@+id/list_chat_chats"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/fragment_historique_historique"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chats"
+                android:text="Historique"
+                android:fontFamily="@font/itc_eras_bold"
+                android:textSize="20dp"
                 style="design"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_chat_recyclerview"
+                android:id="@+id/fragment_historique_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

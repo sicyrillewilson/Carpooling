@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:id="@+id/show_message"
+            android:id="@+id/item_chat_left_message"
             android:text="Hello"
             android:visibility="visible"
             android:textSize="15sp"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="00:00"
             android:layout_weight="1"
-            android:id="@+id/timeView"/>
+            android:id="@+id/item_chat_left_heure"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -30,10 +30,10 @@
                 android:layout_margin="10dp"
                 android:textSize="20dp"
                 android:fontFamily="@font/itc_eras_bold"
-                android:id="@+id/reserver_place_lieu_depart_label"
+                android:id="@+id/reserver_place_destination_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lieu de départ"
+                android:text="Destination"
                 android:gravity="center"/>
 
         </LinearLayout>
@@ -137,7 +137,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <LinearLayout
                     android:layout_margin="5dp"
-                    android:id="@+id/starContainer"
+                    android:id="@+id/reserver_place_starContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
@@ -148,7 +148,7 @@
                     app:layout_constraintRight_toRightOf="parent">
 
                     <ImageView
-                        android:id="@+id/reserver_place_star"
+                            android:id="@+id/reserver_place_star"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:scaleType="centerCrop"

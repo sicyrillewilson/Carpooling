@@ -7,13 +7,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
             <ImageView
+                android:layout_margin="10dp"
+                android:id="@+id/itineraire_voiture_icon"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:src="@drawable/car_side"/>
@@ -24,9 +27,13 @@
             android:layout_height="wrap_content"
             android:gravity="center">
             <TextView
+                android:layout_margin="10dp"
+                android:textSize="20dp"
+                android:fontFamily="@font/itc_eras_bold"
+                android:id="@+id/itineraire_destination_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lieu de départ"
+                android:text="Destination"
                 android:gravity="center"/>
 
         </LinearLayout>
@@ -40,6 +47,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lieu de départ : "
@@ -47,6 +57,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <TextView
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
+                    android:id="@+id/itineraire_lieu_depart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lieu de départ"
@@ -60,6 +73,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Heure : "
@@ -67,6 +83,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <TextView
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
+                    android:id="@+id/itineraire_heure_depart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Heure"
@@ -80,19 +99,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Prix : "
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
+
                 <TextView
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
+                    android:id="@+id/itineraire_prix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Prix"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"/>
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -100,6 +126,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Note : "
@@ -107,7 +136,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <LinearLayout
-                    android:id="@+id/starContainer"
+                    android:layout_margin="5dp"
+                    android:id="@+id/itineraire_starContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
@@ -118,11 +148,11 @@
                     app:layout_constraintRight_toRightOf="parent">
 
                     <ImageView
+                        android:id="@+id/itineraire_star"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:background="@drawable/circle_shape"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/icon_accueil" />
+                        android:src="@drawable/star" />
 
                 </LinearLayout>
 
@@ -136,6 +166,10 @@
             android:layout_height="wrap_content"
             android:gravity="center">
             <TextView
+                android:layout_margin="10dp"
+                android:textSize="20dp"
+                android:fontFamily="@font/itc_eras_bold"
+                android:id="@+id/itineraire_infos_chauffeur"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Infos sur le chauffeur"
@@ -152,6 +186,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nom : "
@@ -159,6 +196,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <TextView
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
+                    android:id="@+id/itineraire_nom_chauffeur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nom"
@@ -172,6 +212,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Prénom : "
@@ -179,6 +222,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <TextView
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
+                    android:id="@+id/itineraire_prenom_chauffeur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Prénom"
@@ -192,6 +238,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Numéro : "
@@ -199,6 +248,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <TextView
+                    android:layout_margin="5dp"
+                    android:textSize="16sp"
+                    android:id="@+id/itineraire_numero_chauffeur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Numéro"
@@ -214,11 +266,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginVertical="200dp">
+            android:gravity="center">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="50dp">
 
+                <Button
+                    android:textSize="18sp"
+                    android:fontFamily="@font/itc_eras_bold"
+                    android:background="@drawable/contour_circulaire"
+                    android:id="@+id/itineraire_suivre_itineraire"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="Suivre l'itinéraire du trajet"
+                    android:drawableRight="@drawable/ic_google_maps_resized"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

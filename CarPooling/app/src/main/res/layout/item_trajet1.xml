@@ -43,7 +43,7 @@
                     android:layout_margin="5dp"/>
 
                 <LinearLayout
-                    android:id="@+id/starContainer"
+                    android:id="@+id/itm_trajet1_starContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -82,10 +82,10 @@
                     android:layout_margin="10dp">
                     <TextView
                         android:textStyle="bold"
-                        android:id="@+id/itm_trajet1_zone_de_depart"
+                        android:id="@+id/itm_trajet1_destination"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Zone de départ" />
+                        android:text="Destination" />
                 </LinearLayout>
 
                 <LinearLayout

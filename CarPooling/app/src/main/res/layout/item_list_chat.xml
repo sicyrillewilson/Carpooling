@@ -12,7 +12,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_margin="25dp">
+        android:layout_margin="10dp"
+        android:padding="8dp"
+        android:background="@drawable/contour_circulaire">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/item_list_chat_profil"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:background="@drawable/circle_shape"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -29,25 +31,34 @@
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
             <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/item_list_chat_profil"
-                android:layout_margin="10dp">
+                android:layout_margin="12dp">
                 <TextView
+                    android:textSize="15.5sp"
+                    android:fontFamily="@font/itc_eras_bold"
+                    android:layout_marginVertical="5dp"
                     android:id="@+id/item_list_chat_prenom"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Prenom de l'utilisateur"
-                    android:gravity="center"/>
+                    android:layout_height="wrap_content"
+                    android:text="Prenom de l'utilisateur"/>
+                <TextView
+                    android:layout_marginVertical="2dp"
+                    android:id="@+id/item_list_chat_dernier_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dernier message"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="center|end"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
