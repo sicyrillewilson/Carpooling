@@ -54,11 +54,11 @@ class SignUpActivity : AppCompatActivity() {
             if (binding.signUpMotDePasse.text.isEmpty()){
                 Toast.makeText(this, "Enter votre mot de pasase", Toast.LENGTH_SHORT).show()
             }
-            if (binding.signUpConfirmerMotDePasse.text.isEmpty() || !binding.signUpMotDePasse.text.equals(binding.signUpConfirmerMotDePasse.text)){
+            if (binding.signUpConfirmerMotDePasse.text.isEmpty() || binding.signUpMotDePasse.text.toString() != binding.signUpConfirmerMotDePasse.text.toString()) {
                 Toast.makeText(this, "Veillez confirmer votre mot de pasase", Toast.LENGTH_SHORT).show()
             }
             //if (binding.signUpNom.text.isNotEmpty() && binding.signUpEmail.text.isNotEmpty() && binding.signUpMotDePasse.text.isNotEmpty()){
-            if (binding.signUpEmail.text.isNotEmpty() && binding.signUpMotDePasse.text.isNotEmpty() && binding.signUpConfirmerMotDePasse.text.isNotEmpty() && binding.signUpMotDePasse.text.equals(binding.signUpConfirmerMotDePasse.text)){
+            if (binding.signUpEmail.text.isNotEmpty() && binding.signUpMotDePasse.text.isNotEmpty() && binding.signUpConfirmerMotDePasse.text.isNotEmpty() && binding.signUpMotDePasse.text.toString() == binding.signUpConfirmerMotDePasse.text.toString()){
                 //createAnAccount(name, password, email)
                 createAnAccount(password, email)
             }

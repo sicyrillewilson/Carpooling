@@ -11,26 +11,9 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import tg.eplcoursandroid.carpooling.fragments.HomeFragment
+import tg.eplcoursandroid.carpooling.fragments.MapsFragment
 
-class MainActivity : AppCompatActivity(), OnMapReadyCallback {
-
-    private var nGoogleMap: GoogleMap? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_maps)
-
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.fragment_maps_id) as SupportMapFragment
-
-        mapFragment.getMapAsync(this)
-    }
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        nGoogleMap = googleMap
-    }
-}
-
-/*class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -50,6 +33,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
                 R.id.nav_chat -> {
                     loadFragment(HomeFragment())
+                    true
+                }
+                R.id.nav_maps -> {
+                    loadFragment(MapsFragment())
                     true
                 }
                 R.id.nav_chauffeurs -> {
@@ -72,5 +59,23 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .commit()
+    }
+}
+
+/*class MainActivity : AppCompatActivity(), OnMapReadyCallback {
+
+    private var nGoogleMap: GoogleMap? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_maps)
+
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.fragment_maps_id) as SupportMapFragment
+
+        mapFragment.getMapAsync(this)
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        nGoogleMap = googleMap
     }
 }*/
