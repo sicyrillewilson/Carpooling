@@ -12,6 +12,9 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import tg.eplcoursandroid.carpooling.fragments.HomeFragment
 import tg.eplcoursandroid.carpooling.fragments.MapsFragment
+import tg.eplcoursandroid.carpooling.fragments.ChatFragment
+import tg.eplcoursandroid.carpooling.fragments.HistoriqueFragment
+import tg.eplcoursandroid.carpooling.fragments.ChauffeurFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_chat -> {
-                    loadFragment(HomeFragment())
+                    loadFragment(ChatFragment())
                     true
                 }
                 R.id.nav_maps -> {
@@ -40,11 +43,11 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_chauffeurs -> {
-                    loadFragment(HomeFragment())
+                    loadFragment(ChauffeurFragment())
                     true
                 }
                 R.id.nav_historique -> {
-                    loadFragment(HomeFragment())
+                    loadFragment(HistoriqueFragment())
                     true
                 }
                 else -> false
@@ -61,21 +64,3 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 }
-
-/*class MainActivity : AppCompatActivity(), OnMapReadyCallback {
-
-    private var nGoogleMap: GoogleMap? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_maps)
-
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.fragment_maps_id) as SupportMapFragment
-
-        mapFragment.getMapAsync(this)
-    }
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        nGoogleMap = googleMap
-    }
-}*/
