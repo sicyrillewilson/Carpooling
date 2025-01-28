@@ -60,6 +60,8 @@ dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:33.8.0"))
 
+    //Google Maps api
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
 
     // Lifecycle components
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
