@@ -28,7 +28,11 @@
 
     </style>
 
-
+    <style name="blackStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">=@font/itc_eras_bold</item>
+    </style>
 
     <style name="Theme.CarPooling" parent="Base.Theme.CarPooling" />
 </resources>
