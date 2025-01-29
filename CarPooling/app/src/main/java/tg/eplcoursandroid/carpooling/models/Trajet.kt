@@ -5,8 +5,10 @@ data class Trajet(
     val idConducteur: String,
     val itineraire: String,
     val heureDepart: String,
+    val lieuDepart: String,
     val prixParPassager: Double,
-    val placesDisponibles: Int
+    val placesDisponibles: Int,
+    val destination: String
 ) {
     // Afficher les détails du trajet
     fun afficherDetailsTrajet() {

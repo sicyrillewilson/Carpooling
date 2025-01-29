@@ -7,7 +7,7 @@ class ConducteurService {
 
     fun ajouterConducteur(conducteur: Conducteur) {
         val database = FirebaseDatabase.getInstance()
-        val ref = database.getReference("conducteurs/${conducteur.utilisateur.uid}")
+        val ref = database.getReference("conducteurs/${conducteur.utilisateur?.uid}")
         ref.setValue(conducteur)
             .addOnSuccessListener {
                 println("Conducteur ajouté avec succès !")
@@ -31,7 +31,7 @@ class ConducteurService {
 
     fun modifierConducteur(conducteur: Conducteur) {
         val database = FirebaseDatabase.getInstance()
-        val ref = database.getReference("conducteurs/${conducteur.utilisateur.uid}")
+        val ref = database.getReference("conducteurs/${conducteur.utilisateur?.uid}")
         ref.setValue(conducteur)
             .addOnSuccessListener {
                 println("Conducteur modifié avec succès !")
@@ -41,7 +41,7 @@ class ConducteurService {
             }
     }
 
-    fun trouverConducteur(uid: String, callback: (Conducteur?) -> Unit) {
+    fun trouverConducteur(uid: String, callback: (Conducteur?) -> Unit){
         val database = FirebaseDatabase.getInstance()
         val ref = database.getReference("conducteurs/$uid")
         ref.get().addOnSuccessListener { snapshot ->

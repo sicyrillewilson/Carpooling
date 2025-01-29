@@ -2,9 +2,10 @@ package tg.eplcoursandroid.carpooling.models
 
 
 class Conducteur(
-    val utilisateur: Utilisateur,
-    val nom : String,
-    val voiture: String
+    val utilisateur: Utilisateur?,
+    val numero : String?,
+    val note : Int?,
+    val voiture: String?
 ) {
     // Créer un trajet
     fun creerTrajet(itineraire: String, heureDepart: String, prixParPassager: Double) {
