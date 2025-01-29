@@ -72,8 +72,8 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.7.0")
 
 
-    implementation("com.google.firebase:firebase-firestore:24.4.5")
-    implementation("com.google.firebase:firebase-firestore-ktx:24.4.5")
+    /*implementation("com.google.firebase:firebase-firestore:24.4.5")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.4.5")*/
 
 
     implementation("com.google.firebase:firebase-auth:21.2.0")

@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+//import com.google.firebase.firestore.FirebaseFirestore
 import tg.eplcoursandroid.carpooling.databinding.SignInBinding
 import tg.eplcoursandroid.carpooling.databinding.SignUpBinding
 import tg.eplcoursandroid.carpooling.models.Passager
@@ -27,7 +27,7 @@ class SignUpActivity : AppCompatActivity() {
     lateinit var binding: SignUpBinding
     lateinit var pd : ProgressDialog
     lateinit var auth : FirebaseAuth
-    lateinit var firestore : FirebaseFirestore
+    //lateinit var firestore : FirebaseFirestore
     //lateinit var name: String
     lateinit var email: String
     lateinit var password: String
@@ -47,7 +47,7 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
         setTitle(localClassName)
         auth = FirebaseAuth.getInstance()
-        firestore = FirebaseFirestore.getInstance()
+        //firestore = FirebaseFirestore.getInstance()
         pd = ProgressDialog(this)
         binding.signUpSeConnecter.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
