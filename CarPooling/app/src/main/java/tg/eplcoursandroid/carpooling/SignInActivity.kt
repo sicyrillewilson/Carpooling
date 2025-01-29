@@ -5,6 +5,7 @@ package tg.eplcoursandroid.carpooling
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +15,12 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import tg.eplcoursandroid.carpooling.databinding.SignInBinding
+import tg.eplcoursandroid.carpooling.models.Passager
+import tg.eplcoursandroid.carpooling.models.Utilisateur
+import tg.eplcoursandroid.carpooling.service.AuthService
+import tg.eplcoursandroid.carpooling.service.ConducteurService
+import tg.eplcoursandroid.carpooling.service.PassagerService
+import tg.eplcoursandroid.carpooling.service.UtilisateurService
 
 /*import android.app.ProgressDialog
 import android.content.Intent
@@ -41,6 +48,11 @@ class SignInActivity : AppCompatActivity() {
     lateinit private var fbauth: FirebaseAuth
     lateinit private var pds: ProgressDialog
     lateinit var binding : SignInBinding
+
+    private val authService = AuthService()
+    private val passagerService = PassagerService()
+    private val utilisateurService = UtilisateurService()
+    private val conducteurService = ConducteurService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,7 +85,19 @@ class SignInActivity : AppCompatActivity() {
     private fun signIn(password: String, email: String) {
         pds.show()
         pds.setMessage("Connexion en cours")
-        fbauth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+        authService.connecter("rahim@gmail.com", "rahimForLife") { success, message ->
+            if (success) {
+                Log.d("Inscrire", "rahim connecte")
+                pds.dismiss()
+                startActivity(Intent(this, MainActivity::class.java))
+            } else {
+                Log.d("Inscrire", "rahim non connecte")
+                pds.dismiss()
+                Toast.makeText(applicationContext, "Données invalides", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        /*fbauth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful){
                 pds.dismiss()
                 startActivity(Intent(this, MainActivity::class.java))
@@ -91,7 +115,7 @@ class SignInActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, "Authentification échouée", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
+        }*/
     }
 
     @Deprecated("Deprecated in Java")
