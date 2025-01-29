@@ -84,15 +84,18 @@ class SignUpActivity : AppCompatActivity() {
         pd.setMessage("Enregistrement de l'utilisateur")
 
         // methode pour inscrire un salaud
-        authService.inscrire("crepin@gmail.com", "fuckEPLforLife") { success, message ->
+        authService.inscrire(email, password) { success, message ->
             Toast.makeText(this, "Methode inscrire executé", Toast.LENGTH_SHORT).show()
             if (success) {
-                Log.d("Inscrire", "crepin inscrit")
-                //pd.dismiss()
+                pd.dismiss()
+                Log.d("Inscrire", "${email} inscrit")
                 Toast.makeText(this, "Succes inscription", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, SignInActivity::class.java))
             } else {
-                Log.d("Inscrire", "crepin non inscrit")
+                pd.dismiss()
+                Log.e("InscriptionErreur", "Erreur : $message")
+                Log.d("Inscrire", "${email} non inscrit")
+                Toast.makeText(this, "Erreur : $message", Toast.LENGTH_LONG).show()
             }
         }
 

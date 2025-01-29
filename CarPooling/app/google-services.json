@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "204783876634",
-    "project_id": "carpooling-fa645",
-    "storage_bucket": "carpooling-fa645.firebasestorage.app"
+    "project_number": "552879216329",
+    "project_id": "carpooling-64059",
+    "storage_bucket": "carpooling-64059.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:204783876634:android:a23442814535cd9b07afa3",
+        "mobilesdk_app_id": "1:552879216329:android:acf2978176d8ef5c0e9f18",
         "android_client_info": {
           "package_name": "tg.eplcoursandroid.carpooling"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCCL-3RzL_T97BcoTAqO0LE72mfmC2n_po"
+          "current_key": "AIzaSyBCahfwDhDvpcs5tfah2ksshuZXLb5LrjM"
         }
       ],
       "services": {

@@ -85,7 +85,7 @@ class SignInActivity : AppCompatActivity() {
     private fun signIn(password: String, email: String) {
         pds.show()
         pds.setMessage("Connexion en cours")
-        authService.connecter("rahim@gmail.com", "rahimForLife") { success, message ->
+        authService.connecter(email, password) { success, message ->
             if (success) {
                 Log.d("Inscrire", "rahim connecte")
                 pds.dismiss()
