@@ -25,10 +25,10 @@ class MessageAdapter(private val messages: List<Message>, private val currentUse
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == VIEW_TYPE_SENT) {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_message_sent, parent, false)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_chat_right, parent, false)
             SentMessageViewHolder(view)
         } else {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_message_recu, parent, false)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_chat_left, parent, false)
             ReceivedMessageViewHolder(view)
         }
     }
@@ -47,12 +47,12 @@ class MessageAdapter(private val messages: List<Message>, private val currentUse
     override fun getItemCount(): Int = messages.size
 
     class SentMessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val messageText: TextView = itemView.findViewById(R.id.messageText)
-        val messageTime: TextView = itemView.findViewById(R.id.messageTime)
+        val messageText: TextView = itemView.findViewById(R.id.item_chat_right_message)
+        val messageTime: TextView = itemView.findViewById(R.id.item_chat_right_heure)
     }
 
     class ReceivedMessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val messageText: TextView = itemView.findViewById(R.id.messageText)
-        val messageTime: TextView = itemView.findViewById(R.id.messageTime)
+        val messageText: TextView = itemView.findViewById(R.id.item_chat_left_message)
+        val messageTime: TextView = itemView.findViewById(R.id.item_chat_left_heure)
     }
 }

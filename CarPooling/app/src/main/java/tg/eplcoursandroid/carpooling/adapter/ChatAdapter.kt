@@ -15,13 +15,13 @@ class ChatAdapter(private val chats: List<Chat>, private val onChatClick: (Chat)
     RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
 
     class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val participantName: TextView = itemView.findViewById(R.id.participantName)
-        val lastMessage: TextView = itemView.findViewById(R.id.dernierMessage)
-        val timestamp: TextView = itemView.findViewById(R.id.timestamp)
+        val participantName: TextView = itemView.findViewById(R.id.item_list_chat_prenom)
+        val lastMessage: TextView = itemView.findViewById(R.id.item_list_chat_dernier_message)
+        val timestamp: TextView = itemView.findViewById(R.id.item_list_chat_heure)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_chat, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list_chat, parent, false)
         return ChatViewHolder(view)
     }
 

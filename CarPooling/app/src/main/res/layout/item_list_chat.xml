@@ -49,13 +49,17 @@
                     android:id="@+id/item_list_chat_prenom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Prenom de l'utilisateur"/>
+                    android:text="Prenom de l'utilisateur"
+                    android:ellipsize="end"
+                    android:singleLine="true"/>
                 <TextView
                     android:layout_marginVertical="2dp"
                     android:id="@+id/item_list_chat_dernier_message"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Dernier message"/>
+                    android:text="Dernier message"
+                    android:maxLines="1"
+                    android:ellipsize="end"/>
             </LinearLayout>
 
             <LinearLayout
