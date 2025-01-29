@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -25,16 +25,17 @@
                 android:background="@drawable/angle_small_left"/>
 
             <TextView
-                android:gravity="center|start"
-                android:paddingHorizontal="10dp"
                 android:id="@+id/chat_layout_nom_chauffeur"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
                 android:layout_weight="1"
+                android:background="@color/transaprent"
+                android:gravity="center|start"
+                android:minHeight="48dp"
+                android:paddingHorizontal="10dp"
                 android:text="Prenom du chauffeur"
-                android:textSize="15sp"
-                android:background="@color/transaprent"/>
+                android:textColor="@color/black"
+                android:textSize="15sp" />
 
         </LinearLayout>
 

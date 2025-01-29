@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_marginVertical="15dp"
+            android:layout_marginStart="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/nouveau_trajet_retour"
+                android:backgroundTint="@color/black"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/angle_small_left"/>
+
+            <TextView
+                android:textColor="@color/black"
+                android:gravity="center|start"
+                android:paddingHorizontal="10dp"
+                android:id="@+id/nouveau_trajet_nouveau_trajet"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_weight="1"
+                android:text="Nouveau trajet"
+                android:textSize="15sp"
+                android:background="@color/transaprent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_marginVertical="15dp"
+            android:layout_marginStart="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginVertical="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/itc_eras_bold"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text=" Nouvelle trajectoire ! "
+                android:textSize="17sp"
+                android:drawableStart="@drawable/ic_car_side_resized"
+                android:drawableEnd="@drawable/ic_maps_and_flags_resized"/>
+
+            <LinearLayout
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:padding="10dp"
+                android:id="@+id/nouveau_trajet_formulaire_zone"
+                android:background="@drawable/contour_circulaire"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_marginVertical="5dp"
+                    android:id="@+id/nouveau_trajet_destination_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_weight="0.24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Destination : " />
+
+                    <EditText
+                        android:layout_weight="0.15"
+                        android:padding="8dp"
+                        android:background="@drawable/contour_circulaire"
+                        android:id="@+id/nouveau_trajet_destination"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="Destination..."/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginVertical="5dp"
+                    android:id="@+id/nouveau_trajet_lieu_depart_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_weight="0.24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lieu de départ : " />
+
+                    <EditText
+                        android:layout_weight="0.15"
+                        android:padding="8dp"
+                        android:background="@drawable/contour_circulaire"
+                        android:id="@+id/nouveau_trajet_lieu_depart"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="Lieu de départ..."/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginVertical="5dp"
+                    android:id="@+id/nouveau_trajet_heure_depart_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_weight="0.24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Heure de départ : " />
+
+                    <EditText
+                        android:layout_weight="0.15"
+                        android:padding="8dp"
+                        android:background="@drawable/contour_circulaire"
+                        android:id="@+id/nouveau_trajet_heure_depart"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="Heure de départ..."/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginVertical="5dp"
+                    android:id="@+id/nouveau_trajet_prix_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_weight="0.22"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Prix : " />
+
+                    <EditText
+                        android:layout_weight="0.18"
+                        android:padding="8dp"
+                        android:background="@drawable/contour_circulaire"
+                        android:id="@+id/nouveau_trajet_prix"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="Prix..."/>
+
+                    <TextView
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:layout_weight="0.31"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="fcfa" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginVertical="10dp"
+                    android:gravity="center"
+                    android:id="@+id/nouveau_trajet_bouton_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/annuler_contour_circulaire"
+                        android:fontFamily="@font/itc_eras_bold"
+                        android:id="@+id/nouveau_trajet_annuler"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textSize="15sp"
+                        android:text="Annuler"/>
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/creer_contour_circulaire"
+                        android:fontFamily="@font/itc_eras_bold"
+                        android:id="@+id/nouveau_trajet_valider"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textSize="15sp"
+                        android:text="Valider"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:gravity="center">
             <TextView
+                android:textColor="@color/black"
                 android:layout_margin="10dp"
                 android:textSize="20dp"
                 android:fontFamily="@font/itc_eras_bold"
@@ -166,6 +167,7 @@
             android:layout_height="wrap_content"
             android:gravity="center">
             <TextView
+                android:textColor="@color/black"
                 android:layout_margin="10dp"
                 android:textSize="20dp"
                 android:fontFamily="@font/itc_eras_bold"
@@ -318,6 +320,7 @@
             android:layout_height="wrap_content"
             android:gravity="center">
             <TextView
+                android:textColor="@color/black"
                 android:layout_marginVertical="10dp"
                 android:textSize="20dp"
                 android:fontFamily="@font/itc_eras_bold"
