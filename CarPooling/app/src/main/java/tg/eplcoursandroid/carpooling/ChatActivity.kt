@@ -2,8 +2,8 @@ package tg.eplcoursandroid.carpooling
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +17,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var chatId: String
     private lateinit var messagesRecyclerView: RecyclerView
     private lateinit var messageInput: EditText
-    private lateinit var sendButton: Button
+    private lateinit var sendButton: ImageView
     private val messages = mutableListOf<Message>()
     private lateinit var messageAdapter: MessageAdapter
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -28,6 +28,12 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.chat_layout)
+
+        // Gestion du clic sur le bouton d'envoi
+        sendButton = findViewById(R.id.chat_layout_send)
+        sendButton.setOnClickListener {
+            envoyerMessage()
+        }
 
         // Récupération de l'ID du chat depuis l'Intent
         chatId = intent.getStringExtra("CHAT_ID") ?: run {
@@ -43,7 +49,6 @@ class ChatActivity : AppCompatActivity() {
         // Initialisation des composants UI
         messagesRecyclerView = findViewById(R.id.chat_layout_lv_messages)
         messageInput = findViewById(R.id.chat_layout_message)
-        sendButton = findViewById(R.id.chat_layout_send)
 
         messagesRecyclerView.layoutManager = LinearLayoutManager(this)
         messageAdapter = MessageAdapter(messages, auth.currentUser?.uid ?: "")
@@ -51,9 +56,6 @@ class ChatActivity : AppCompatActivity() {
 
         // Charger les messages
         chargerMessages()
-
-        // Gestion du clic sur le bouton d'envoi
-        sendButton.setOnClickListener { envoyerMessage() }
     }
 
     private fun chargerMessages() {
@@ -78,6 +80,13 @@ class ChatActivity : AppCompatActivity() {
         val text = messageInput.text.toString().trim()
         if (text.isNotBlank()) {
             val messageId = messagesRef.push().key ?: return
+            /*
+            if (messageId == null) {
+                Log.e("ChatActivity", "Erreur lors de la génération de l'ID du message")
+                return
+            }
+            */
+
             val senderId = auth.currentUser?.uid ?: ""
 
             val message = Message(

@@ -87,7 +87,9 @@
                 android:id="@+id/chat_layout_send"
                 android:layout_width="25dp"
                 android:layout_height="20dp"
-                android:background="@drawable/send"/>
+                android:background="@drawable/send"
+                android:clickable="true"
+                android:focusable="true" />
 
         </LinearLayout>
 

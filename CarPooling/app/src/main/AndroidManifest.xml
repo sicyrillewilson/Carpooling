@@ -23,8 +23,7 @@
             android:value="AIzaSyAOVYRIgupAurZup5y1PRh8Ismb1A3lLao"/>
         <activity
             android:name=".ChatActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustNothing"/>
+            android:exported="false"/>
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />

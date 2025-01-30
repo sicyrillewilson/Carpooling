@@ -134,6 +134,28 @@ class SignUpActivity : AppCompatActivity() {
             if (success) {
                 pd.dismiss()
                 Log.d("Inscrire", "${email} inscrit")
+                val currentUser = authService.getCurrentUser()
+                if (currentUser != null) {
+                    Log.d("ChatApp", "Utilisateur connecté : ${currentUser.email}")
+                } else {
+                    Log.d("ChatApp", "Aucun utilisateur connecté.")
+                }
+
+                // creation d'un utilisateur qui est celui actuellement connecte
+                val utilisateur = Utilisateur(currentUser!!.uid, currentUser.email, currentUser.displayName, null,  null)
+                utilisateurService.ajouterUtilisateur(utilisateur,onSuccess = {
+                    Log.d("MainActivity", "Utilisateur ajouté avec succès !")
+                }, onFailure = { exception ->
+                    Log.e("MainActivity", "Erreur lors de l'ajout de l'utilisateur : ${exception.message}")
+                })
+
+                // creation d'un passager
+                val passager = Passager(utilisateur, "crepin")
+                passagerService.ajouterPassager(passager,onSuccess = {
+                    Log.d("MainActivity", "Passager ajouté avec succès !")
+                }, onFailure = { exception ->
+                    Log.e("MainActivity", "Erreur lors de l'ajout du passager : ${exception.message}")
+                })
                 startActivity(Intent(this, SignInActivity::class.java))
                 finish()
             } else {
@@ -143,30 +165,6 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
 
-    /*
-        val currentUser = authService.getCurrentUser()
-        if (currentUser != null) {
-            Log.d("ChatApp", "Utilisateur connecté : ${currentUser.email}")
-        } else {
-            Log.d("ChatApp", "Aucun utilisateur connecté.")
-        }
-
-        // creation d'un utilisateur qui est celui actuellement connecte
-        val utilisateur = Utilisateur(currentUser!!.uid, currentUser.email, currentUser.displayName)
-        utilisateurService.ajouterUtilisateur(utilisateur,onSuccess = {
-            Log.d("MainActivity", "Utilisateur ajouté avec succès !")
-        }, onFailure = { exception ->
-            Log.e("MainActivity", "Erreur lors de l'ajout de l'utilisateur : ${exception.message}")
-        })
-
-        // creation d'un passager
-        val passager = Passager(utilisateur, "crepin")
-        passagerService.ajouterPassager(passager,onSuccess = {
-            Log.d("MainActivity", "Passager ajouté avec succès !")
-        }, onFailure = { exception ->
-            Log.e("MainActivity", "Erreur lors de l'ajout du passager : ${exception.message}")
-        })
-*/
         /*auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {task->
             if (task.isSuccessful){
                 val user = auth.currentUser
