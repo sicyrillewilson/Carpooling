@@ -39,6 +39,8 @@ class SignUpActivity : AppCompatActivity() {
     private val utilisateurService = UtilisateurService()
     private val conducteurService = ConducteurService()
 
+    // Ajout de la variable pour suivre l'état du mot de passe
+    private var isPasswordVisible = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +51,26 @@ class SignUpActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         //firestore = FirebaseFirestore.getInstance()
         pd = ProgressDialog(this)
+
+        togglePasswordVisibility()
+
+        // Clic sur l'icône pour afficher/masquer le mot de passe
+        binding.passwordToggle.setOnClickListener {
+            togglePasswordVisibility()
+            // Mettre à jour l'état de la visibilité
+            isPasswordVisible = !isPasswordVisible
+            // Re-donner le focus à l'EditText pour que le texte apparaisse immédiatement
+            binding.signUpMotDePasse.setSelection(binding.signUpMotDePasse.text.length)
+        }
+
+        binding.passwordToggle2.setOnClickListener {
+            togglePasswordVisibility()
+            // Mettre à jour l'état de la visibilité
+            isPasswordVisible = !isPasswordVisible
+            // Re-donner le focus à l'EditText pour que le texte apparaisse immédiatement
+            binding.signUpConfirmerMotDePasse.setSelection(binding.signUpConfirmerMotDePasse.text.length)
+        }
+
         binding.signUpSeConnecter.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
         }
@@ -77,25 +99,45 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    private fun togglePasswordVisibility() {
+        val typeface = binding.signUpMotDePasse.typeface // Sauvegarde la police
+
+        if (isPasswordVisible) {
+            // Masquer le mot de passe
+            binding.signUpMotDePasse.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+            binding.passwordToggle.setImageResource(R.drawable.star_plein)
+
+            binding.signUpConfirmerMotDePasse.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+            binding.passwordToggle2.setImageResource(R.drawable.star_plein)
+        } else {
+            // Afficher le mot de passe
+            binding.signUpMotDePasse.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            binding.passwordToggle.setImageResource(R.drawable.star)
+
+            binding.signUpConfirmerMotDePasse.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            binding.passwordToggle2.setImageResource(R.drawable.star)
+        }
+
+        // Réappliquer la police
+        binding.signUpMotDePasse.typeface = typeface
+        binding.signUpConfirmerMotDePasse.typeface = typeface
+    }
+
 //    private fun createAnAccount(name: String, password: String, email: String) {
     private fun createAnAccount(password: String, email: String) {
-    Toast.makeText(this, "Creation en cours", Toast.LENGTH_SHORT).show()
         pd.show()
         pd.setMessage("Enregistrement de l'utilisateur")
 
         // methode pour inscrire un salaud
         authService.inscrire(email, password) { success, message ->
-            Toast.makeText(this, "Methode inscrire executé", Toast.LENGTH_SHORT).show()
             if (success) {
                 pd.dismiss()
                 Log.d("Inscrire", "${email} inscrit")
-                Toast.makeText(this, "Succes inscription", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, SignInActivity::class.java))
             } else {
                 pd.dismiss()
                 Log.e("InscriptionErreur", "Erreur : $message")
                 Log.d("Inscrire", "${email} non inscrit")
-                Toast.makeText(this, "Erreur : $message", Toast.LENGTH_LONG).show()
             }
         }
 

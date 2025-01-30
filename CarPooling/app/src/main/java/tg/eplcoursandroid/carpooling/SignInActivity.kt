@@ -54,6 +54,9 @@ class SignInActivity : AppCompatActivity() {
     private val utilisateurService = UtilisateurService()
     private val conducteurService = ConducteurService()
 
+    // Ajout de la variable pour suivre l'état du mot de passe
+    private var isPasswordVisible = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.sign_in)
@@ -65,6 +68,18 @@ class SignInActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
         pds = ProgressDialog(this)
+
+        togglePasswordVisibility()
+
+        // Clic sur l'icône pour afficher/masquer le mot de passe
+        binding.passwordToggle.setOnClickListener {
+            togglePasswordVisibility()
+            // Mettre à jour l'état de la visibilité
+            isPasswordVisible = !isPasswordVisible
+            // Re-donner le focus à l'EditText pour que le texte apparaisse immédiatement
+            binding.signInMotDePasse.setSelection(binding.signInMotDePasse.text.length)
+        }
+
         binding.signInCreerCompte.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
@@ -82,6 +97,26 @@ class SignInActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun togglePasswordVisibility() {
+        val typeface = binding.signInMotDePasse.typeface // Sauvegarde la police
+
+        if (isPasswordVisible) {
+            // Masquer le mot de passe
+            binding.signInMotDePasse.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+            binding.passwordToggle.setImageResource(R.drawable.star_plein)
+
+        } else {
+            // Afficher le mot de passe
+            binding.signInMotDePasse.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            binding.passwordToggle.setImageResource(R.drawable.star)
+
+        }
+
+        // Réappliquer la police
+        binding.signInMotDePasse.typeface = typeface
+    }
+
     private fun signIn(password: String, email: String) {
         pds.show()
         pds.setMessage("Connexion en cours")

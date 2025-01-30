@@ -5,17 +5,55 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import tg.eplcoursandroid.carpooling.R
+import tg.eplcoursandroid.carpooling.adapter.Trajet1Adapter
+import tg.eplcoursandroid.carpooling.databinding.FragmentHomeBinding
+import tg.eplcoursandroid.carpooling.models.Trajet
+import tg.eplcoursandroid.carpooling.service.TrajetService
 
 class HomeFragment : Fragment() {
-    
+
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.reserver_place, container, false)
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        var trajetService = TrajetService()
+        var trajets: List<Trajet> = listOf()
+
+        trajetService.listerTrajets { traj ->
+            if (traj != null) {
+                trajets = traj
+
+                val midIndex = traj.size / 2
+
+                val trajet1 = traj.subList(0, midIndex) // Première moitié
+                val trajet2 = traj.subList(midIndex, traj.size) // Deuxième moitié
+
+                binding.homeRecyclerTrajet1.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                binding.homeRecyclerTrajet1.adapter = Trajet1Adapter(trajet1)
+                binding.homeRecyclerTrajet1.setHasFixedSize(true)
+
+                binding.homeRecyclerTrajet2.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                binding.homeRecyclerTrajet2.adapter = Trajet1Adapter(trajet2)
+                binding.homeRecyclerTrajet2.setHasFixedSize(true)
+            } else {
+                println("Trajets non trouvé")
+            }
+        }
+
     }
 
 }

@@ -36,33 +36,65 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
-                    android:hint="Email..."/>
+                    android:hint="Email..."
+                    android:inputType="textEmailAddress"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp">
+                android:orientation="horizontal"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/contour_circulaire">
+
                 <EditText
-                    android:padding="8dp"
-                    android:background="@drawable/contour_circulaire"
+                    android:layout_weight="0.8"
                     android:id="@+id/sign_up_mot_de_passe"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
+                    android:background="@color/transaprent"
                     android:layout_height="wrap_content"
+                    android:hint="Mot de passe.."
+                    android:inputType="textPassword"
                     android:minHeight="48dp"
-                    android:hint="Mot de passe.."/>
+                    android:padding="8dp" />
+
+                <ImageView
+                    android:layout_weight="0.05"
+                    android:layout_gravity="center|end"
+                    android:id="@+id/password_toggle"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="8dp"
+                    android:src="@drawable/star"
+                    android:contentDescription="password visibility"/>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp">
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/contour_circulaire"
+                android:orientation="horizontal">
                 <EditText
+                    android:layout_weight="0.8"
                     android:padding="8dp"
-                    android:background="@drawable/contour_circulaire"
+                    android:background="@color/transaprent"
                     android:id="@+id/sign_up_confirmer_mot_de_passe"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
-                    android:hint="Confirmer le mot de passe..."/>
+                    android:hint="Confirmer le mot de passe..."
+                    android:inputType="textPassword"/>
+
+                <ImageView
+                    android:layout_weight="0.05"
+                    android:layout_gravity="center|end"
+                    android:id="@+id/password_toggle2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="8dp"
+                    android:src="@drawable/star"
+                    android:contentDescription="password visibility"/>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

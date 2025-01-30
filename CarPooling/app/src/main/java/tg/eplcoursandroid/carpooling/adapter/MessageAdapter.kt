@@ -36,10 +36,10 @@ class MessageAdapter(private val messages: List<Message>, private val currentUse
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val message = messages[position]
         if (holder is SentMessageViewHolder) {
-            holder.messageText.text = message.text
+            holder.messageText.text = message.content
             holder.messageTime.text = DateFormat.getTimeInstance().format(Date(message.timestamp))
         } else if (holder is ReceivedMessageViewHolder) {
-            holder.messageText.text = message.text
+            holder.messageText.text = message.content
             holder.messageTime.text = DateFormat.getTimeInstance().format(Date(message.timestamp))
         }
     }

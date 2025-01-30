@@ -35,7 +35,7 @@ class Trajet1Adapter (private val trajets: List<Trajet>) : RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: TicketViewHolder, position: Int) {
         val currentTicket = trajets[position]
-        val conducteurService: ConducteurService = ConducteurService()
+        val conducteurService = ConducteurService()
 
         conducteurService.trouverConducteur(currentTicket.idConducteur) { conducteur ->
             if (conducteur != null) {
