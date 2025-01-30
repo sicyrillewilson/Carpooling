@@ -54,6 +54,10 @@ class FormulaireChauffeurActivity : AppCompatActivity() {
         setContentView(binding.root)
         setTitle(localClassName)
 
+        binding.devenirChauffeurRetour.setOnClickListener {
+            //finish()
+        }
+
         binding.devenirChauffeurAnnuler.setOnClickListener {
             methodeAnnuler()
         }
@@ -83,6 +87,7 @@ class FormulaireChauffeurActivity : AppCompatActivity() {
                         conducteurService.ajouterConducteur(conducteur)
                         ObjetConducteur.saveConducteur(this, conducteur)
                         startActivity(Intent(this, MainActivity::class.java))
+                        finish()
                         //methodeAnnuler()
 
                     } else {

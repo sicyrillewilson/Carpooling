@@ -8,6 +8,8 @@ class TrajetService {
     fun ajouterTrajet(trajet: Trajet) {
         val database = FirebaseDatabase.getInstance()
         val ref = database.getReference("trajets/${trajet.idTrajet}")
+        val id = ref.push().key
+        trajet.idTrajet = id.toString()
         ref.setValue(trajet)
             .addOnSuccessListener {
                 println("Trajet ajouté avec succès !")

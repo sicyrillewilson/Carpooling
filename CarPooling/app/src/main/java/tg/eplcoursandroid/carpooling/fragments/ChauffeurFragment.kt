@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import tg.eplcoursandroid.carpooling.FormulaireChauffeurActivity
+import tg.eplcoursandroid.carpooling.FormulaireTrajetActivity
 import tg.eplcoursandroid.carpooling.R
 import tg.eplcoursandroid.carpooling.SignUpActivity
 import tg.eplcoursandroid.carpooling.database.ObjetConducteur
@@ -85,7 +86,10 @@ class ChauffeurFragment : Fragment() {
     }
 
     private fun conducteur() {
-
+        binding2.fragmentChauffeurAddIcon.setOnClickListener {
+            val intent = Intent(requireContext(), FormulaireTrajetActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }
