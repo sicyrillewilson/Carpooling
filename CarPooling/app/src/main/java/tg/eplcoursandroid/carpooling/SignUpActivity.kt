@@ -73,6 +73,7 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.signUpSeConnecter.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
+            finish()
         }
         binding.signUpValider.setOnClickListener {
             //name = binding.signUpNom.text.toString()
@@ -134,6 +135,7 @@ class SignUpActivity : AppCompatActivity() {
                 pd.dismiss()
                 Log.d("Inscrire", "${email} inscrit")
                 startActivity(Intent(this, SignInActivity::class.java))
+                finish()
             } else {
                 pd.dismiss()
                 Log.e("InscriptionErreur", "Erreur : $message")

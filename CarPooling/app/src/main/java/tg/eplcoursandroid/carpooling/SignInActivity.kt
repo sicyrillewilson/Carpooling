@@ -66,6 +66,7 @@ class SignInActivity : AppCompatActivity() {
         fbauth = FirebaseAuth.getInstance()
         if (fbauth.currentUser!=null){
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
         pds = ProgressDialog(this)
 
@@ -82,6 +83,7 @@ class SignInActivity : AppCompatActivity() {
 
         binding.signInCreerCompte.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
+            finish()
         }
         binding.signInConnexion.setOnClickListener {
             email = binding.signInEmail.text.toString()
@@ -124,7 +126,11 @@ class SignInActivity : AppCompatActivity() {
             if (success) {
                 Log.d("Inscrire", "rahim connecte")
                 pds.dismiss()
-                startActivity(Intent(this, MainActivity::class.java))
+                //startActivity(Intent(this, MainActivity::class.java))
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish()
             } else {
                 Log.d("Inscrire", "rahim non connecte")
                 pds.dismiss()

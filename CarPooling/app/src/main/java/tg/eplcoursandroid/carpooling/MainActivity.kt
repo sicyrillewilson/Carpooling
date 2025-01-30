@@ -1,6 +1,11 @@
+@file:Suppress("DEPRECATION")
+
 package tg.eplcoursandroid.carpooling
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -17,6 +22,10 @@ import tg.eplcoursandroid.carpooling.fragments.HistoriqueFragment
 import tg.eplcoursandroid.carpooling.fragments.ChauffeurFragment
 
 class MainActivity : AppCompatActivity() {
+
+    private var doubleBackToExitPressedOnce = false // Variable pour gérer le double appui
+    private var currentFragment: Fragment? = null // Pour suivre quel fragment est affiché
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,5 +71,30 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .commit()
+        currentFragment = fragment
+    }
+    override fun onBackPressed() {
+        if (currentFragment is HomeFragment) {
+            // Si on est sur HomeFragment, gérer le double appui pour quitter l'application
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed() // Quitter l'application
+                return
+            }
+
+            this.doubleBackToExitPressedOnce = true
+            // Afficher un message à l'utilisateur
+            Toast.makeText(this, "Appuyez à nouveau pour quitter", Toast.LENGTH_SHORT).show()
+
+            // Remettre la variable à false après un délai
+            Handler(Looper.getMainLooper()).postDelayed({
+                doubleBackToExitPressedOnce = false
+            }, 2000) // Le délai pour un deuxième appui est de 2 secondes
+        } else {
+            // Si on n'est pas dans HomeFragment, on retourne au HomeFragment
+            loadFragment(HomeFragment())
+            // Charger un fragment par défaut
+            val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bouton_navigation)
+            bottomNavigationView.selectedItemId = R.id.nav_home
+        }
     }
 }
