@@ -28,6 +28,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/primaire"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -56,7 +57,9 @@
                 android:fontFamily="@font/itc_eras_bold"
                 android:textSize="17sp"
                 style="design"
-                android:drawableEnd="@drawable/ic_car_side_resized"/>
+                android:drawableEnd="@drawable/ic_car_side_resized"
+                android:clickable="true"
+                android:focusable="true"/>
 
         </LinearLayout>
 

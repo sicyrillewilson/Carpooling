@@ -25,6 +25,12 @@
             android:name=".ChatActivity"
             android:exported="false"/>
         <activity
+            android:name=".FormulaireChauffeurActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".FormulaireTrajetActivity"
+            android:exported="false"/>
+        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity

@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import tg.eplcoursandroid.carpooling.databinding.SignInBinding
 import tg.eplcoursandroid.carpooling.databinding.SignUpBinding
 import tg.eplcoursandroid.carpooling.models.Passager
+import tg.eplcoursandroid.carpooling.models.Trajet
 import tg.eplcoursandroid.carpooling.models.Utilisateur
 import tg.eplcoursandroid.carpooling.service.AuthService
 import tg.eplcoursandroid.carpooling.service.ConducteurService
@@ -29,6 +30,7 @@ class SignUpActivity : AppCompatActivity() {
     lateinit var auth : FirebaseAuth
     //lateinit var firestore : FirebaseFirestore
     //lateinit var name: String
+    lateinit var nom: String
     lateinit var email: String
     lateinit var password: String
     lateinit var passwordConfirm: String
@@ -77,12 +79,16 @@ class SignUpActivity : AppCompatActivity() {
         }
         binding.signUpValider.setOnClickListener {
             //name = binding.signUpNom.text.toString()
+            nom = binding.signUpNom.text.toString()
             email = binding.signUpEmail.text.toString()
             password = binding.signUpMotDePasse.text.toString()
             passwordConfirm = binding.signUpConfirmerMotDePasse.text.toString()
 //            if (binding.signUpNom.text.isEmpty()){
 //                Toast.makeText(this, "Enter Votre nom", Toast.LENGTH_SHORT).show()
 //            }
+            if (binding.signUpNom.text.isEmpty()){
+                Toast.makeText(this, "Enter votre nom", Toast.LENGTH_SHORT).show()
+            }
             if (binding.signUpEmail.text.isEmpty()){
                 Toast.makeText(this, "Enter votre email", Toast.LENGTH_SHORT).show()
             }
@@ -93,9 +99,9 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "Veillez confirmer votre mot de passe", Toast.LENGTH_SHORT).show()
             }
             //if (binding.signUpNom.text.isNotEmpty() && binding.signUpEmail.text.isNotEmpty() && binding.signUpMotDePasse.text.isNotEmpty()){
-            if (binding.signUpEmail.text.isNotEmpty() && binding.signUpMotDePasse.text.isNotEmpty() && binding.signUpConfirmerMotDePasse.text.isNotEmpty() && binding.signUpMotDePasse.text.toString() == binding.signUpConfirmerMotDePasse.text.toString()){
+            if (binding.signUpNom.text.isNotEmpty() && binding.signUpEmail.text.isNotEmpty() && binding.signUpMotDePasse.text.isNotEmpty() && binding.signUpConfirmerMotDePasse.text.isNotEmpty() && binding.signUpMotDePasse.text.toString() == binding.signUpConfirmerMotDePasse.text.toString()){
                 //createAnAccount(name, password, email)
-                createAnAccount(password, email)
+                createAnAccount(password, email, nom)
             }
         }
     }
@@ -125,7 +131,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 //    private fun createAnAccount(name: String, password: String, email: String) {
-    private fun createAnAccount(password: String, email: String) {
+    private fun createAnAccount(password: String, email: String, nom: String) {
         pd.show()
         pd.setMessage("Enregistrement de l'utilisateur")
 
@@ -136,32 +142,35 @@ class SignUpActivity : AppCompatActivity() {
                 Log.d("Inscrire", "${email} inscrit")
                 val currentUser = authService.getCurrentUser()
                 if (currentUser != null) {
-                    Log.d("ChatApp", "Utilisateur connecté : ${currentUser.email}")
+                    Log.d("SignUpSignUp", "Utilisateur connecté : ${currentUser.email}")
                 } else {
-                    Log.d("ChatApp", "Aucun utilisateur connecté.")
+                    Log.d("SignUpSignUp", "Aucun utilisateur connecté.")
                 }
 
                 // creation d'un utilisateur qui est celui actuellement connecte
-                val utilisateur = Utilisateur(currentUser!!.uid, currentUser.email, currentUser.displayName, null,  null)
+//                val utilisateur = Utilisateur(currentUser!!.uid, currentUser.email, nom, listOf(
+//                    Trajet("", "", "", "", "", .0, 0, "")
+//                ),  "")
+                val utilisateur = Utilisateur(currentUser!!.uid, currentUser.email, nom,  "")
                 utilisateurService.ajouterUtilisateur(utilisateur,onSuccess = {
-                    Log.d("MainActivity", "Utilisateur ajouté avec succès !")
+                    Log.d("SignUpSignUp", "Utilisateur ajouté avec succès !")
                 }, onFailure = { exception ->
-                    Log.e("MainActivity", "Erreur lors de l'ajout de l'utilisateur : ${exception.message}")
+                    Log.e("SignUpSignUp", "Erreur lors de l'ajout de l'utilisateur : ${exception.message}")
                 })
 
-                // creation d'un passager
-                val passager = Passager(utilisateur, "crepin")
+                /*// creation d'un passager
+                val passager = Passager(utilisateur, nom)
                 passagerService.ajouterPassager(passager,onSuccess = {
                     Log.d("MainActivity", "Passager ajouté avec succès !")
                 }, onFailure = { exception ->
                     Log.e("MainActivity", "Erreur lors de l'ajout du passager : ${exception.message}")
-                })
+                })*/
                 startActivity(Intent(this, SignInActivity::class.java))
                 finish()
             } else {
                 pd.dismiss()
-                Log.e("InscriptionErreur", "Erreur : $message")
-                Log.d("Inscrire", "${email} non inscrit")
+                Log.e("SignUpSignUp", "Erreur : $message")
+                Log.d("SignUpSignUp", "${email} non inscrit")
             }
         }
 

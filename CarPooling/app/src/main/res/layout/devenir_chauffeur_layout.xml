@@ -82,64 +82,6 @@
 
                 <LinearLayout
                     android:layout_marginVertical="5dp"
-                    android:id="@+id/devenir_chauffeur_nom_lay"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="5dp">
-
-                    <TextView
-                        android:textColor="@color/black"
-                        android:textSize="15.5sp"
-                        android:textStyle="bold"
-                        android:layout_weight="0.4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Nom : " />
-
-                    <EditText
-                        android:layout_weight="0.15"
-                        android:padding="8dp"
-                        android:background="@drawable/contour_circulaire"
-                        android:id="@+id/devenir_chauffeur_nom"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minHeight="48dp"
-                        android:hint="Votre nom..."/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginVertical="5dp"
-                    android:id="@+id/devenir_chauffeur_prenom_lay"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="5dp">
-
-                    <TextView
-                        android:textColor="@color/black"
-                        android:textSize="15.5sp"
-                        android:textStyle="bold"
-                        android:layout_weight="0.4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Prenom : " />
-
-                    <EditText
-                        android:layout_weight="0.15"
-                        android:padding="8dp"
-                        android:background="@drawable/contour_circulaire"
-                        android:id="@+id/devenir_chauffeur_prenom"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minHeight="48dp"
-                        android:hint="Votre prenom..."/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginVertical="5dp"
                     android:id="@+id/devenir_chauffeur_numero_lay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -153,7 +95,8 @@
                         android:layout_weight="0.4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Numero : " />
+                        android:text="Numero : "
+                        android:inputType="number"/>
 
                     <EditText
                         android:layout_weight="0.15"
@@ -164,6 +107,36 @@
                         android:layout_height="wrap_content"
                         android:minHeight="48dp"
                         android:hint="Votre numero..."/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginVertical="5dp"
+                    android:id="@+id/devenir_chauffeur_matricule_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="15.5sp"
+                        android:textStyle="bold"
+                        android:layout_weight="0.4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Matricule : "
+                        android:inputType="text"/>
+
+                    <EditText
+                        android:layout_weight="0.15"
+                        android:padding="8dp"
+                        android:background="@drawable/contour_circulaire"
+                        android:id="@+id/devenir_chauffeur_matricule"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="Matricule de la voiture..."/>
 
                 </LinearLayout>
 
@@ -187,7 +160,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:textSize="15sp"
-                        android:text="Annuler"/>
+                        android:text="Annuler"
+                        android:clickable="true"
+                        android:focusable="true"/>
 
                     <TextView
                         android:textColor="@color/black"
@@ -200,7 +175,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:textSize="15sp"
-                        android:text="Créer"/>
+                        android:text="Créer"
+                        android:clickable="true"
+                        android:focusable="true"/>
 
                 </LinearLayout>
 

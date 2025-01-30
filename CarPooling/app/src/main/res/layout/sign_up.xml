@@ -32,6 +32,20 @@
                 <EditText
                     android:padding="8dp"
                     android:background="@drawable/contour_circulaire"
+                    android:id="@+id/sign_up_nom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:hint="Nom..."
+                    android:inputType="text"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp">
+                <EditText
+                    android:padding="8dp"
+                    android:background="@drawable/contour_circulaire"
                     android:id="@+id/sign_up_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -52,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:background="@color/transaprent"
                     android:layout_height="wrap_content"
-                    android:hint="Mot de passe.."
+                    android:hint="Mot de passe..."
                     android:inputType="textPassword"
                     android:minHeight="48dp"
                     android:padding="8dp" />

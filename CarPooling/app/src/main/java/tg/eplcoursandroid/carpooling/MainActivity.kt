@@ -5,6 +5,7 @@ package tg.eplcoursandroid.carpooling
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,11 +21,19 @@ import tg.eplcoursandroid.carpooling.fragments.MapsFragment
 import tg.eplcoursandroid.carpooling.fragments.ChatFragment
 import tg.eplcoursandroid.carpooling.fragments.HistoriqueFragment
 import tg.eplcoursandroid.carpooling.fragments.ChauffeurFragment
+import tg.eplcoursandroid.carpooling.models.Conducteur
+import tg.eplcoursandroid.carpooling.service.AuthService
+import tg.eplcoursandroid.carpooling.service.ConducteurService
 
 class MainActivity : AppCompatActivity() {
 
     private var doubleBackToExitPressedOnce = false // Variable pour gérer le double appui
     private var currentFragment: Fragment? = null // Pour suivre quel fragment est affiché
+
+    private val authService = AuthService()
+    private val conducteurService = ConducteurService()
+    private val currentUser = authService.getCurrentUser()
+    private var currentConducteur = Conducteur()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

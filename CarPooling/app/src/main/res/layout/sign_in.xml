@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:background="@color/transaprent"
                     android:layout_height="wrap_content"
-                    android:hint="Mot de passe.."
+                    android:hint="Mot de passe..."
                     android:inputType="textPassword"
                     android:minHeight="48dp"
                     android:padding="8dp" />
