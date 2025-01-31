@@ -1,9 +1,9 @@
 package tg.eplcoursandroid.carpooling.models
 
 data class Utilisateur(
-    val uid: String?,
-    val email: String?,
-    val nom: String?,
+    val uid: String? = null,
+    val email: String? = null,
+    val nom: String? = null,
     //val trajets: List<Trajet>?,
     val photoUrl: String? = null
 )

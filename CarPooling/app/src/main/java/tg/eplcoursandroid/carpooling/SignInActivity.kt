@@ -106,12 +106,12 @@ class SignInActivity : AppCompatActivity() {
         if (isPasswordVisible) {
             // Masquer le mot de passe
             binding.signInMotDePasse.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
-            binding.passwordToggle.setImageResource(R.drawable.star_plein)
+            binding.passwordToggle.setImageResource(R.drawable.eye)
 
         } else {
             // Afficher le mot de passe
             binding.signInMotDePasse.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            binding.passwordToggle.setImageResource(R.drawable.star)
+            binding.passwordToggle.setImageResource(R.drawable.hidden)
 
         }
 

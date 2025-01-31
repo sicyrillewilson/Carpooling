@@ -219,17 +219,17 @@
                     android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Prénom : "
+                    android:text="Numéro : "
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <TextView
                     android:layout_margin="5dp"
                     android:textSize="16sp"
-                    android:id="@+id/reserver_place_prenom_chauffeur"
+                    android:id="@+id/reserver_place_numero_chauffeur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Prénom"
+                    android:text="Numéro"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"/>
@@ -245,17 +245,17 @@
                     android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Numéro : "
+                    android:text="Matricule : "
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
                 <TextView
                     android:layout_margin="5dp"
                     android:textSize="16sp"
-                    android:id="@+id/reserver_place_numero_chauffeur"
+                    android:id="@+id/reserver_place_matricule_chauffeur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Numéro"
+                    android:text="Matricule"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"/>
@@ -318,31 +318,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:gravity="center">
-            <TextView
-                android:textColor="@color/black"
-                android:layout_marginVertical="10dp"
-                android:textSize="20dp"
-                android:fontFamily="@font/itc_eras_bold"
-                android:id="@+id/reserver_place_autres_trajets_disponibles"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Autres trajets disponibles" />
+                android:layout_marginVertical="50dp">
+
+                <Button
+                    android:textSize="18sp"
+                    android:fontFamily="@font/itc_eras_bold"
+                    android:background="@drawable/contour_circulaire"
+                    android:id="@+id/reserver_place_suivre_itineraire"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="Suivre l'itinéraire du trajet"
+                    android:drawableRight="@drawable/ic_google_maps_resized"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="5dp">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/reserver_place_recyclerview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

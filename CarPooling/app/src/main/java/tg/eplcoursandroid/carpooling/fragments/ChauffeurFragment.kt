@@ -7,17 +7,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import tg.eplcoursandroid.carpooling.FormulaireChauffeurActivity
 import tg.eplcoursandroid.carpooling.FormulaireTrajetActivity
 import tg.eplcoursandroid.carpooling.R
 import tg.eplcoursandroid.carpooling.SignUpActivity
+import tg.eplcoursandroid.carpooling.adapter.ChauffeurItemAdapter
+import tg.eplcoursandroid.carpooling.adapter.Trajet1Adapter
+import tg.eplcoursandroid.carpooling.adapter.Trajet3Adapter
 import tg.eplcoursandroid.carpooling.database.ObjetConducteur
 import tg.eplcoursandroid.carpooling.databinding.FragmentChauffeurBinding
 import tg.eplcoursandroid.carpooling.databinding.FragmentHomeBinding
 import tg.eplcoursandroid.carpooling.databinding.FragmentPreChauffeurBinding
 import tg.eplcoursandroid.carpooling.models.Conducteur
+import tg.eplcoursandroid.carpooling.models.Trajet
 import tg.eplcoursandroid.carpooling.service.AuthService
 import tg.eplcoursandroid.carpooling.service.ConducteurService
+import tg.eplcoursandroid.carpooling.service.TrajetService
 import tg.eplcoursandroid.carpooling.service.UtilisateurService
 
 class ChauffeurFragment : Fragment() {
@@ -89,6 +95,28 @@ class ChauffeurFragment : Fragment() {
         binding2.fragmentChauffeurAddIcon.setOnClickListener {
             val intent = Intent(requireContext(), FormulaireTrajetActivity::class.java)
             startActivity(intent)
+        }
+        var trajetService = TrajetService()
+        var trajets: List<Trajet> = listOf()
+        var trajetsConducteur: MutableList<Trajet> = mutableListOf()
+
+        trajetService.listerTrajets { traj ->
+            if (traj != null) {
+                trajets = traj
+
+                for (trajet in trajets) {
+                    if (trajet.idConducteur == currentConducteur.utilisateur?.uid) {
+                        trajetsConducteur.add(trajet)
+                    }
+                }
+
+                binding2.fragmentChauffeurRecyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                binding2.fragmentChauffeurRecyclerview.adapter = ChauffeurItemAdapter(trajetsConducteur)
+                binding2.fragmentChauffeurRecyclerview.setHasFixedSize(true)
+
+            } else {
+                println("Trajets non trouvé")
+            }
         }
     }
 

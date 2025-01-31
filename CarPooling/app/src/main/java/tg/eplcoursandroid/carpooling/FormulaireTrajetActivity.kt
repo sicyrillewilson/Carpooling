@@ -34,7 +34,6 @@ class FormulaireTrajetActivity : AppCompatActivity() {
 
     lateinit var password: String
     lateinit private var fbauth: FirebaseAuth
-    lateinit private var pds: ProgressDialog
     lateinit var binding : NouveauTrajetLayoutBinding
 
     private val trajetService = TrajetService()

@@ -50,6 +50,9 @@ class FormulaireChauffeurActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.sign_in)
+
+        pds = ProgressDialog(this)
+
         binding = DevenirChauffeurLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTitle(localClassName)
@@ -88,12 +91,14 @@ class FormulaireChauffeurActivity : AppCompatActivity() {
                         ObjetConducteur.saveConducteur(this, conducteur)
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
+                        return@runOnUiThread
                         //methodeAnnuler()
 
                     } else {
                         Toast.makeText(this, "Echec de la création", Toast.LENGTH_SHORT).show()
                         Toast.makeText(this, "Null User = ${user.nom}", Toast.LENGTH_SHORT).show()
                         Log.e("FormulaireChauffeur", "Utilisateur non trouvé")
+                        return@runOnUiThread
                     }
                 }
             }
@@ -116,13 +121,13 @@ class FormulaireChauffeurActivity : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         super.onBackPressed()
-        pds.dismiss()
+        pds?.dismiss()
         finish()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        pds.dismiss()
+        pds?.dismiss()
 
     }
 

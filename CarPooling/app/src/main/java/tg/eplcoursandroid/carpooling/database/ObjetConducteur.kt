@@ -11,7 +11,7 @@ object ObjetConducteur {
         val editor = sharedPreferences.edit()
         val gson = Gson()
         val json = gson.toJson(conducteur)
-        editor.putString("tickets", json)
+        editor.putString("conducteur", json)
         editor.apply()
     }
 
@@ -19,7 +19,7 @@ object ObjetConducteur {
     fun loadConducteur(context: Context): Conducteur {
         val sharedPreferences = context.getSharedPreferences("ConducteurPrefs", Context.MODE_PRIVATE)
         val gson = Gson()
-        val json = sharedPreferences.getString("tickets", null)
+        val json = sharedPreferences.getString("conducteur", null)
         val type = object : TypeToken<Conducteur>() {}.type
         return gson.fromJson(json, type) ?: Conducteur()
     }

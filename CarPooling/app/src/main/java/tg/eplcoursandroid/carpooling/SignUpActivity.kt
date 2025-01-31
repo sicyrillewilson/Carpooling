@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
+import tg.eplcoursandroid.carpooling.database.ObjetUtilisateur
 //import com.google.firebase.firestore.FirebaseFirestore
 import tg.eplcoursandroid.carpooling.databinding.SignInBinding
 import tg.eplcoursandroid.carpooling.databinding.SignUpBinding
@@ -112,17 +113,17 @@ class SignUpActivity : AppCompatActivity() {
         if (isPasswordVisible) {
             // Masquer le mot de passe
             binding.signUpMotDePasse.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
-            binding.passwordToggle.setImageResource(R.drawable.star_plein)
+            binding.passwordToggle.setImageResource(R.drawable.eye)
 
             binding.signUpConfirmerMotDePasse.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
-            binding.passwordToggle2.setImageResource(R.drawable.star_plein)
+            binding.passwordToggle2.setImageResource(R.drawable.eye)
         } else {
             // Afficher le mot de passe
             binding.signUpMotDePasse.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            binding.passwordToggle.setImageResource(R.drawable.star)
+            binding.passwordToggle.setImageResource(R.drawable.hidden)
 
             binding.signUpConfirmerMotDePasse.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            binding.passwordToggle2.setImageResource(R.drawable.star)
+            binding.passwordToggle2.setImageResource(R.drawable.hidden)
         }
 
         // Réappliquer la police
@@ -157,6 +158,8 @@ class SignUpActivity : AppCompatActivity() {
                 }, onFailure = { exception ->
                     Log.e("SignUpSignUp", "Erreur lors de l'ajout de l'utilisateur : ${exception.message}")
                 })
+
+                ObjetUtilisateur.saveUtilisateur(this, utilisateur)
 
                 /*// creation d'un passager
                 val passager = Passager(utilisateur, nom)

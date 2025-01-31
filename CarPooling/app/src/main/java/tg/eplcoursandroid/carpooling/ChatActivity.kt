@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import tg.eplcoursandroid.carpooling.adapter.MessageAdapter
+import tg.eplcoursandroid.carpooling.databinding.ChatLayoutBinding
+import tg.eplcoursandroid.carpooling.databinding.ReserverPlaceBinding
 import tg.eplcoursandroid.carpooling.models.Message
 
 class ChatActivity : AppCompatActivity() {
@@ -25,14 +27,24 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var messagesRef: DatabaseReference
     private lateinit var chatDetailsRef: DatabaseReference
 
+    lateinit var binding : ChatLayoutBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.chat_layout)
+        /*setContentView(R.layout.chat_layout)*/
+
+        binding = ChatLayoutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setTitle(localClassName)
 
         // Gestion du clic sur le bouton d'envoi
         sendButton = findViewById(R.id.chat_layout_send)
         sendButton.setOnClickListener {
             envoyerMessage()
+        }
+
+        binding.chatLayoutRetour.setOnClickListener {
+            finish()
         }
 
         // Récupération de l'ID du chat depuis l'Intent

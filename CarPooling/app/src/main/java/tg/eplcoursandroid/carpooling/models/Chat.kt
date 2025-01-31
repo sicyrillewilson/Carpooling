@@ -1,9 +1,9 @@
 package tg.eplcoursandroid.carpooling.models
 
 data class Chat(
-    val id: String = "",
-    val conducteurId: String = "",
-    val passagerId: String = "",
-    val dernierMessage: String = "",
-    val timestamp: Long = System.currentTimeMillis()
+    var id: String = "",
+    var conducteurId: String = "",
+    var passagerId: String = "",
+    var dernierMessage: String = "",
+    var timestamp: Long = System.currentTimeMillis()
 )
