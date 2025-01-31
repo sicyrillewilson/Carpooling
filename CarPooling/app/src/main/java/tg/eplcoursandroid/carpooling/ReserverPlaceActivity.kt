@@ -34,6 +34,7 @@ import tg.eplcoursandroid.carpooling.service.AuthService
 import tg.eplcoursandroid.carpooling.service.ChatService
 import tg.eplcoursandroid.carpooling.service.ConducteurService
 import tg.eplcoursandroid.carpooling.service.PassagerService
+import tg.eplcoursandroid.carpooling.service.TrajetService
 import tg.eplcoursandroid.carpooling.service.UtilisateurService
 
 class ReserverPlaceActivity : AppCompatActivity() {
@@ -50,6 +51,7 @@ class ReserverPlaceActivity : AppCompatActivity() {
     private val chatService = ChatService()
     private val currentUser = authService.getCurrentUser()
     private var currentUtilisateur = Utilisateur()
+    private var trajetService = TrajetService()
 
     lateinit private var numero : EditText
     private lateinit var matricule : EditText
@@ -68,10 +70,52 @@ class ReserverPlaceActivity : AppCompatActivity() {
         setContentView(binding.root)
         setTitle(localClassName)
 
+
         // Récupérer le trajet depuis l'Intent
         trajet = intent.getSerializableExtra("trajet") as Trajet
 
+        binding.reserverPlaceReserverPlace.setOnClickListener {
+            reserverPlace(trajet)
+        }
         chargerDonees(trajet)
+    }
+
+    private fun reserverPlace(trajet: Trajet) {
+        currentUtilisateur = ObjetUtilisateur.loadUtilisateur(this)
+        // Vérifie si l'utilisateur est connecté
+        if(currentUtilisateur.uid == null) {
+            currentUser?.uid?.let { uid ->
+                utilisateurService.trouverUtilisateur(uid) { utilisateur ->
+                    runOnUiThread {
+                        if (utilisateur != null) {
+                            ObjetUtilisateur.saveUtilisateur(this, utilisateur)
+                            currentUtilisateur = utilisateur
+                        } else {
+                            Log.e("HomeFragment", "Utilisateur non trouvé")
+                        }
+                    }
+                }
+            } ?: Log.e("HomeFragment", "Utilisateur non trouvé")
+        }
+        var trouver = false
+        /*for (idPassager in trajet.listIdPassagerReservation) {
+            if(idPassager == currentUtilisateur.uid.toString()){
+                trouver = true
+                break
+            }
+        }*/
+
+        if (trajet.listIdPassagerReservation.contains(currentUtilisateur.uid.toString())) {
+            trouver = true
+        }
+
+        if (!trouver){
+            trajet.listIdPassagerReservation.add(currentUtilisateur.uid.toString())
+            trajetService.modifierTrajet(trajet)
+            Toast.makeText(this, "Réservation effectuée", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Déjà Réservé", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun chargerDonees(trajet: Trajet) {

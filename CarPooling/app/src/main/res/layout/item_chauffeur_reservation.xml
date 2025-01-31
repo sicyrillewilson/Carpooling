@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:gravity="center"
+    android:orientation="horizontal"
+    app:flow_horizontalBias="1">
+
+    <LinearLayout
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        android:background="@drawable/contour_circulaire">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:gravity="center"
+                android:id="@+id/itm_chauffeur_reservation_conducteur_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/itm_chauffeur_reservation_zone">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/itm_chauffeur_reservation_conducteur_profil"
+                    android:layout_width="73dp"
+                    android:layout_height="73dp"
+                    android:scaleType="centerCrop"
+                    android:layout_margin="5dp"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/black"
+                    android:src="@drawable/default_profile"/>
+
+                <LinearLayout
+                    android:id="@+id/itm_chauffeur_reservation_starContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:minWidth="70dp"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
+
+                    <ImageView
+                        android:id="@+id/itm_chauffeur_reservation_star"
+                        android:layout_width="24dp"
+                        android:layout_height="23dp"
+                        android:scaleType="centerCrop"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:padding="5dp"
+                android:id="@+id/itm_chauffeur_reservation_zone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/itm_chauffeur_reservation_conducteur_info"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_margin="5dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="15dp">
+                    <TextView
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:id="@+id/itm_chauffeur_reservation_destination"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Destination" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/itm_chauffeur_reservation_lieu_de_depart_lay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:textSize="15.5sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lieu de départ : " />
+
+                    <TextView
+                        android:textSize="15.5sp"
+                        android:id="@+id/itm_chauffeur_reservation_lieu_de_depart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lieu de départ" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/itm_chauffeur_reservation_heure_de_depart_lay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:textSize="15.5sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Heure : " />
+
+                    <TextView
+                        android:textSize="15.5sp"
+                        android:id="@+id/itm_chauffeur_reservation_heure_de_depart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Heure de départ" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/itm_chauffeur_reservation_prix_lay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:textSize="15.5sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prix : " />
+
+                    <TextView
+                        android:textSize="15.5sp"
+                        android:id="@+id/itm_chauffeur_reservation_prix"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prix du trajet" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,13 @@
 package tg.eplcoursandroid.carpooling.models
 
+import java.io.Serializable
+
 
 class Passager(
     val utilisateur: Utilisateur,
     val nom : String
 
-) {
+) : Serializable  {
     // Rechercher un trajet
     fun rechercherTrajet(destination: String, localisationActuelle: String) {
         // Logique pour rechercher un trajet dans Firebase Realtime Database

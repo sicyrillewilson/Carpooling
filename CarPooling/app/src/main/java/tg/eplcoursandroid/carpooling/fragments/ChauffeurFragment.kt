@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import tg.eplcoursandroid.carpooling.FormulaireChauffeurActivity
 import tg.eplcoursandroid.carpooling.FormulaireTrajetActivity
 import tg.eplcoursandroid.carpooling.R
+import tg.eplcoursandroid.carpooling.ReservationActivity
+import tg.eplcoursandroid.carpooling.ReserverPlaceActivity
 import tg.eplcoursandroid.carpooling.SignUpActivity
 import tg.eplcoursandroid.carpooling.adapter.ChauffeurItemAdapter
 import tg.eplcoursandroid.carpooling.adapter.Trajet1Adapter
@@ -94,6 +96,11 @@ class ChauffeurFragment : Fragment() {
     private fun conducteur() {
         binding2.fragmentChauffeurAddIcon.setOnClickListener {
             val intent = Intent(requireContext(), FormulaireTrajetActivity::class.java)
+            startActivity(intent)
+        }
+        binding2.fragmentChauffeurReservation.setOnClickListener {
+            val intent = Intent(requireContext(), ReservationActivity::class.java)
+            intent.putExtra("conducteur", currentConducteur)
             startActivity(intent)
         }
         var trajetService = TrajetService()

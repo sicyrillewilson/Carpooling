@@ -1,12 +1,14 @@
 package tg.eplcoursandroid.carpooling.models
 
+import java.io.Serializable
+
 
 class Conducteur(
     val utilisateur: Utilisateur? = null,
     val numero: String? = null,
     val note: Int? = null,
     val voiture: String? = null //Matricule
-) {
+) : Serializable {
 
     // Constructeur par recopie
     constructor(conducteur: Conducteur) : this(

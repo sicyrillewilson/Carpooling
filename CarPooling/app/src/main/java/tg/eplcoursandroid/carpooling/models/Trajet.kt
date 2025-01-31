@@ -9,7 +9,8 @@ data class Trajet(
     var heureDepart: String = "",
     var lieuDepart: String = "",
     var prixParPassager: Double = 0.0,
-    var listIdPassager: List<String> = listOf(""),
+    var listIdPassagerReservation: MutableList<String> = mutableListOf(),
+    var listIdPassager: MutableList<String> = mutableListOf(),
     var destination: String = ""
 ) : Serializable {
     // Afficher les détails du trajet
