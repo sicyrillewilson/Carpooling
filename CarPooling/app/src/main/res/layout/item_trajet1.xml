@@ -9,6 +9,7 @@
     app:flow_horizontalBias="1">
 
     <LinearLayout
+        android:paddingHorizontal="10dp"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,6 +25,7 @@
 
 
             <LinearLayout
+                android:gravity="center"
                 android:id="@+id/itm_trajet1_conducteur_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,7 +44,7 @@
                     android:layout_margin="5dp"
                     app:civ_border_width="2dp"
                     app:civ_border_color="@color/black"
-                    android:src="@color/white"/>
+                    android:src="@drawable/default_profile"/>
 
 
                 <LinearLayout
@@ -59,8 +61,7 @@
                         android:id="@+id/itm_trajet1_star"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/star" />
+                        android:scaleType="centerCrop" />
 
                 </LinearLayout>
 

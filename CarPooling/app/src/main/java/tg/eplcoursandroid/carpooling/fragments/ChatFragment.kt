@@ -11,14 +11,23 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import tg.eplcoursandroid.carpooling.ChatActivity
 import tg.eplcoursandroid.carpooling.R
 import tg.eplcoursandroid.carpooling.adapter.ChatAdapter
+import tg.eplcoursandroid.carpooling.database.ObjetUtilisateur
 import tg.eplcoursandroid.carpooling.databinding.FragmentChatBinding
 import tg.eplcoursandroid.carpooling.models.Chat
+import tg.eplcoursandroid.carpooling.models.Utilisateur
+import tg.eplcoursandroid.carpooling.service.AuthService
 import tg.eplcoursandroid.carpooling.service.ChatService
+import tg.eplcoursandroid.carpooling.service.UtilisateurService
 
 class ChatFragment : Fragment() {
 
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
+
+    private val authService = AuthService()
+    private val utilisateurService = UtilisateurService()
+    private val currentUser = authService.getCurrentUser()
+    private var currentUtilisateur = Utilisateur()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,11 +41,35 @@ class ChatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val chatService = ChatService()
+        var chatUtilisateur: MutableList<Chat> = mutableListOf()
 
         chatService.listerChats { chatList ->
             if (chatList != null) {
+
+                currentUtilisateur = ObjetUtilisateur.loadUtilisateur(requireContext())
+                // Vérifie si l'utilisateur est connecté
+                if(currentUtilisateur.uid == null) {
+                    currentUser?.uid?.let { uid ->
+                        utilisateurService.trouverUtilisateur(uid) { utilisateur ->
+                            requireActivity().runOnUiThread {
+                                if (utilisateur != null) {
+                                    ObjetUtilisateur.saveUtilisateur(requireContext(), utilisateur)
+                                    currentUtilisateur = utilisateur
+                                } else {
+                                    Log.e("HomeFragment", "Utilisateur non trouvé")
+                                }
+                            }
+                        }
+                    } ?: Log.e("HomeFragment", "Utilisateur non trouvé")
+                }
+                for (chat in chatList) {
+                    if (chat.conducteurId == currentUtilisateur.uid || chat.passagerId == currentUtilisateur.uid) {
+                        chatUtilisateur.add(chat)
+                    }
+                }
+
                 binding.fragmentChatRecyclerview.layoutManager = LinearLayoutManager(context)
-                binding.fragmentChatRecyclerview.adapter = ChatAdapter(chatList) { chat ->
+                binding.fragmentChatRecyclerview.adapter = ChatAdapter(chatUtilisateur) { chat ->
                     onChatClicked(chat)
                 }
                 binding.fragmentChatRecyclerview.setHasFixedSize(true)

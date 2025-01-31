@@ -11,9 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import tg.eplcoursandroid.carpooling.adapter.MessageAdapter
+import tg.eplcoursandroid.carpooling.database.ObjetUtilisateur
 import tg.eplcoursandroid.carpooling.databinding.ChatLayoutBinding
 import tg.eplcoursandroid.carpooling.databinding.ReserverPlaceBinding
 import tg.eplcoursandroid.carpooling.models.Message
+import tg.eplcoursandroid.carpooling.service.ChatService
+import tg.eplcoursandroid.carpooling.service.ConducteurService
+import tg.eplcoursandroid.carpooling.service.UtilisateurService
 
 class ChatActivity : AppCompatActivity() {
     private lateinit var chatId: String
@@ -52,6 +56,29 @@ class ChatActivity : AppCompatActivity() {
             //Toast.makeText(this, "Erreur : Chat ID manquant", Toast.LENGTH_SHORT).show()
             finish()
             return
+        }
+
+        var currentUtilisateur = ObjetUtilisateur.loadUtilisateur(this)
+
+        val chatService : ChatService = ChatService()
+        chatService.trouverChat(chatId) { chat ->
+            if (chat != null) {
+                if(chat.conducteurId != currentUtilisateur.uid) {
+                    val conducteurService = ConducteurService()
+                    conducteurService.trouverConducteur(chat.conducteurId) { conducteur ->
+                        if (conducteur != null) {
+                            binding.chatLayoutNomChauffeur.text = conducteur.utilisateur?.nom
+                        }
+                    }
+                } else {
+                    val utilisateurService = UtilisateurService()
+                    utilisateurService.trouverUtilisateur(chat.passagerId){ utilisateur ->
+                        if (utilisateur != null) {
+                            binding.chatLayoutNomChauffeur.text = utilisateur.nom
+                        }
+                    }
+                }
+            }
         }
 
         // Initialisation des références Firebase

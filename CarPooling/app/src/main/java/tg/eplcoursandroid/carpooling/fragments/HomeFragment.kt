@@ -86,7 +86,7 @@ class HomeFragment : Fragment() {
                 binding.homeRecyclerTrajet1.setHasFixedSize(true)
 
                 binding.homeRecyclerTrajet2.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                binding.homeRecyclerTrajet2.adapter = Trajet1Adapter(trajet2) {
+                binding.homeRecyclerTrajet2.adapter = Trajet2Adapter(trajet2) {
                         trajectoire -> onTrajetClicked(trajectoire)
                 }
                 binding.homeRecyclerTrajet2.setHasFixedSize(true)

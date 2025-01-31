@@ -27,6 +27,7 @@
 
 
             <LinearLayout
+                android:gravity="center"
                 android:id="@+id/itm_chauffeur_conducteur_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,7 +46,7 @@
                     android:layout_margin="5dp"
                     app:civ_border_width="2dp"
                     app:civ_border_color="@color/black"
-                    android:src="@color/white"/>
+                    android:src="@drawable/default_profile"/>
 
                 <LinearLayout
                     android:id="@+id/itm_chauffeur_starContainer"
@@ -59,10 +60,9 @@
 
                     <ImageView
                         android:id="@+id/itm_chauffeur_star"
-                        android:layout_width="23dp"
+                        android:layout_width="24dp"
                         android:layout_height="23dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/star" />
+                        android:scaleType="centerCrop"/>
 
                 </LinearLayout>
 

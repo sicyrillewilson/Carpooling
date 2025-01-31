@@ -49,6 +49,8 @@ class ChatItemAdapter (private val trajets: List<Trajet>) : RecyclerView.Adapter
                 // Charger l'image du conducteur
                 Glide.with(holder.itemView.context)
                     .load(conducteur.utilisateur?.photoUrl) // Image du conducteur
+                    .placeholder(R.drawable.default_profile) // Image temporaire en attendant le chargement
+                    .error(R.drawable.default_profile) // Image affichée si l'URL est invalide ou absente
                     .into(holder.profileImageView)
 
                 // Afficher les étoiles en fonction de la note

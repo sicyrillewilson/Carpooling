@@ -11,11 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 import tg.eplcoursandroid.carpooling.R
-import tg.eplcoursandroid.carpooling.models.Conducteur
 import tg.eplcoursandroid.carpooling.models.Trajet
 import tg.eplcoursandroid.carpooling.service.ConducteurService
 
-class Trajet2Adapter (private val trajets: List<Trajet>) : RecyclerView.Adapter<Trajet2Adapter.TicketViewHolder>() {
+class Trajet2Adapter (private val trajets: List<Trajet>, private val onTrajetClicked: (Trajet) -> Unit) : RecyclerView.Adapter<Trajet2Adapter.TicketViewHolder>() {
 
     // ViewHolder inner class
     class TicketViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -34,21 +33,23 @@ class Trajet2Adapter (private val trajets: List<Trajet>) : RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: TicketViewHolder, position: Int) {
-        val currentTicket = trajets[position]
+        val currentTrajet = trajets[position]
         val conducteurService = ConducteurService()
 
-        conducteurService.trouverConducteur(currentTicket.idConducteur) { conducteur ->
+        conducteurService.trouverConducteur(currentTrajet.idConducteur) { conducteur ->
             if (conducteur != null) {
                 // Si le conducteur est trouvé
                 println("Conducteur trouvé : ${conducteur.utilisateur?.nom}")
-                holder.destinationTextView.text = currentTicket.destination
-                holder.lieuDepartTextView.text = currentTicket.lieuDepart
-                holder.heureDepartTextView.text = currentTicket.heureDepart
-                holder.prixTextView.text = currentTicket.prixParPassager.toString()
+                holder.destinationTextView.text = currentTrajet.destination
+                holder.lieuDepartTextView.text = currentTrajet.lieuDepart
+                holder.heureDepartTextView.text = currentTrajet.heureDepart
+                holder.prixTextView.text = currentTrajet.prixParPassager.toString()
 
                 // Charger l'image du conducteur
                 Glide.with(holder.itemView.context)
                     .load(conducteur.utilisateur?.photoUrl) // Image du conducteur
+                    .placeholder(R.drawable.default_profile) // Image temporaire en attendant le chargement
+                    .error(R.drawable.default_profile) // Image affichée si l'URL est invalide ou absente
                     .into(holder.profileImageView)
 
                 // Afficher les étoiles en fonction de la note
@@ -57,6 +58,10 @@ class Trajet2Adapter (private val trajets: List<Trajet>) : RecyclerView.Adapter<
                 // Si le conducteur n'est pas trouvé
                 println("Conducteur non trouvé")
             }
+        }
+        // Ajout du listener pour détecter les clics sur l'élément du RecyclerView
+        holder.itemView.setOnClickListener {
+            onTrajetClicked(currentTrajet)
         }
     }
 

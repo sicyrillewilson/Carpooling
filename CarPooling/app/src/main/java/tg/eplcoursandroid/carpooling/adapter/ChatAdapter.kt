@@ -12,6 +12,7 @@ import tg.eplcoursandroid.carpooling.R
 import tg.eplcoursandroid.carpooling.models.Chat
 import tg.eplcoursandroid.carpooling.service.ChatService
 import tg.eplcoursandroid.carpooling.service.ConducteurService
+import tg.eplcoursandroid.carpooling.service.UtilisateurService
 import java.text.DateFormat
 import java.util.Date
 
@@ -35,12 +36,21 @@ class ChatAdapter(private val chats: List<Chat>, private val onChatClick: (Chat)
         val chatId = "${chat.conducteurId}_${chat.passagerId}"
 
         // Identifier l'autre participant (passager ou conducteur)
-        val participantId = if (chat.conducteurId == FirebaseAuth.getInstance().currentUser?.uid) {
-            chat.passagerId
+        if (chat.conducteurId == FirebaseAuth.getInstance().currentUser?.uid) {
+            val utilisateurService = UtilisateurService()
+            utilisateurService.trouverUtilisateur(chat.passagerId) { utilisateur ->
+                if(utilisateur != null){
+                    holder.participantName.text = utilisateur.nom
+                }
+            }
         } else {
-            chat.conducteurId
+            val conducteurService= ConducteurService()
+            conducteurService.trouverConducteur(chat.conducteurId) { conducteur ->
+                if (conducteur != null) {
+                    holder.participantName.text = conducteur.utilisateur?.nom
+                }
+            }
         }
-        holder.participantName.text = "Utilisateur : $participantId"
 
         // Charger le dernier message depuis Firebase
         ChatService().obtenirDernierMessage(chatId) { message ->
@@ -56,6 +66,8 @@ class ChatAdapter(private val chats: List<Chat>, private val onChatClick: (Chat)
                     // Charger l'image du conducteur
                     Glide.with(holder.itemView.context)
                         .load(conducteur.utilisateur?.photoUrl) // Image du conducteur
+                        .placeholder(R.drawable.default_profile) // Image temporaire en attendant le chargement
+                        .error(R.drawable.default_profile) // Image affichée si l'URL est invalide ou absente
                         .into(holder.profileImageView)
 
                 } else {
