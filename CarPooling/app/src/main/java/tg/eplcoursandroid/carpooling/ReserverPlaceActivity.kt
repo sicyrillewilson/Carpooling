@@ -121,18 +121,34 @@ class ReserverPlaceActivity : AppCompatActivity() {
     }
 
     private fun creerEtTrouverChat(conducteur: Conducteur) {
-        var chat = Chat().apply {
-            passagerId = currentUtilisateur.uid.toString()
-            conducteurId = conducteur.utilisateur?.uid.toString()
-            id = "${conducteurId}_${passagerId}"
+        var trouver = false
+        var chatsList : MutableList<Chat> = mutableListOf()
+        chatService.listerChats { chats ->
+            for (chat in chats) {
+                chatsList.add(chat)
+            }
         }
-        // Attendre un peu avant de récupérer le chat
-        chatService.trouverChat("${conducteur.utilisateur?.uid.toString()}_${currentUtilisateur.uid.toString()}") { chatTrouve ->
-            if (chatTrouve != null) {
-                demarrerChat(chatTrouve)
-            } else {
-                chatService.ajouterChat(chat)
+        for (chat in chatsList) {
+            if ((chat.conducteurId == conducteur.utilisateur?.uid && chat.passagerId == currentUtilisateur.uid) || (chat.passagerId == conducteur.utilisateur?.uid && chat.conducteurId == currentUtilisateur.uid)){
                 demarrerChat(chat)
+                trouver = true
+                break
+            }
+        }
+        if (!trouver) {
+            var chat = Chat().apply {
+                passagerId = currentUtilisateur.uid.toString()
+                conducteurId = conducteur.utilisateur?.uid.toString()
+                id = "${conducteurId}_${passagerId}"
+            }
+            // Attendre un peu avant de récupérer le chat
+            chatService.trouverChat("${conducteur.utilisateur?.uid.toString()}_${currentUtilisateur.uid.toString()}") { chatTrouve ->
+                if (chatTrouve != null) {
+                    demarrerChat(chatTrouve)
+                } else {
+                    chatService.ajouterChat(chat)
+                    demarrerChat(chat)
+                }
             }
         }
     }

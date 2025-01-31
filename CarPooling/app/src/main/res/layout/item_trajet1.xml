@@ -109,7 +109,10 @@
                         android:id="@+id/itm_trajet1_lieu_de_depart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lieu de départ" />
+                        android:text="Lieu de départ"
+                        android:ellipsize="end"
+                        android:maxLines="1"/>
+
 
                 </LinearLayout>
 
@@ -130,7 +133,10 @@
                         android:id="@+id/itm_trajet1_heure_de_depart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Heure de départ" />
+                        android:text="Heure de départ"
+                        android:ellipsize="end"
+                        android:maxLines="1"/>
+
 
                 </LinearLayout>
 
@@ -151,7 +157,9 @@
                         android:id="@+id/itm_trajet1_prix"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Prix du trajet" />
+                        android:text="Prix du trajet"
+                        android:ellipsize="end"
+                        android:maxLines="1"/>
 
                 </LinearLayout>
 

@@ -99,6 +99,7 @@ class ChatActivity : AppCompatActivity() {
 
     private fun chargerMessages() {
         messagesRef.addValueEventListener(object : ValueEventListener {
+        //messagesRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 messages.clear()
                 snapshot.children.forEach { data ->

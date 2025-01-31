@@ -62,6 +62,9 @@ class ChatFragment : Fragment() {
                         }
                     } ?: Log.e("HomeFragment", "Utilisateur non trouvé")
                 }
+
+                chatUtilisateur.clear()
+
                 for (chat in chatList) {
                     if (chat.conducteurId == currentUtilisateur.uid || chat.passagerId == currentUtilisateur.uid) {
                         chatUtilisateur.add(chat)
