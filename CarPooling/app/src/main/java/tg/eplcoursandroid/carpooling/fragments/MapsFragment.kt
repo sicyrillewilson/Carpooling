@@ -70,6 +70,11 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
             }
         }
 
+        /*// Exemple : Ajoutez un marqueur ou configurez la carte ici
+        val location = LatLng(-34.0, 151.0)
+        nGoogleMap?.addMarker(MarkerOptions().position(location).title("Marker in Sydney"))
+        nGoogleMap?.moveCamera(CameraUpdateFactory.newLatLng(location))
+        */
     }
 
     // Gérer la réponse de l'utilisateur à la demande de permission
