@@ -76,44 +76,42 @@ class FormulaireChauffeurActivity : AppCompatActivity() {
     private fun methodeCreer() {
         val currentUser = authService.getCurrentUser()
 
-        numero = findViewById(R.id.devenir_chauffeur_numero)
+        val numero = binding.devenirChauffeurNumero.text.toString()
+        val matricule = binding.devenirChauffeurMatricule.text.toString()
 
-        matricule = findViewById(R.id.devenir_chauffeur_matricule)
+        // Vérification des champs vides
+        if (numero.isEmpty() || numero.toDouble()<10000000) {
+            Toast.makeText(this, "Veuillez entrer un numéro convenable", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-        var user: Utilisateur = Utilisateur("","","","")
+        if (matricule.isEmpty()) {
+            Toast.makeText(this, "Veuillez entrer votre matricule", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        var user: Utilisateur = Utilisateur("", "", "", "")
 
         currentUser?.uid?.let { uid ->
             utilisateurService.trouverUtilisateur(uid) { utilisateur ->
                 runOnUiThread {
                     if (utilisateur != null) {
                         user = utilisateur
-                        Toast.makeText(this, "User = ${user.nom}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "${user.nom}, vous êtes maintenant un chauffeur", Toast.LENGTH_SHORT).show()
 
-                        val conducteur = Conducteur(user ,numero.text.toString(),0, matricule.text.toString())
+                        val conducteur = Conducteur(user, numero, 0, matricule)
                         conducteurService.ajouterConducteur(conducteur)
                         ObjetConducteur.saveConducteur(this, conducteur)
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
-                        return@runOnUiThread
-                        //methodeAnnuler()
 
                     } else {
-                        Toast.makeText(this, "Echec de la création", Toast.LENGTH_SHORT).show()
-                        Toast.makeText(this, "Null User = ${user.nom}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Échec de la création", Toast.LENGTH_SHORT).show()
                         Log.e("FormulaireChauffeur", "Utilisateur non trouvé")
-                        return@runOnUiThread
                     }
                 }
             }
         } ?: Log.e("FormulaireChauffeur", "Utilisateur non trouvé")
-
-        /*if(user.uid != ""){
-
-        } else {
-
-        }*/
-        //val conducteur = Conducteur( ,numero.text.toString(),0,"LKM12R")
-        //conducteurService.ajouterConducteur(conducteur)
     }
 
     private fun methodeAnnuler() {

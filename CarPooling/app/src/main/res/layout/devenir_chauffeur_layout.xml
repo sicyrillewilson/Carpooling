@@ -25,6 +25,7 @@
                 android:background="@drawable/angle_small_left"/>
 
             <TextView
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:gravity="center|start"
                 android:paddingHorizontal="10dp"
@@ -106,7 +107,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:minHeight="48dp"
-                        android:hint="Votre numero..."/>
+                        android:hint="Votre numero..."
+                        android:inputType="number"/>
 
                 </LinearLayout>
 

@@ -76,6 +76,10 @@ class ReserverPlaceActivity : AppCompatActivity() {
         // Récupérer le trajet depuis l'Intent
         trajet = intent.getSerializableExtra("trajet") as Trajet
 
+        binding.reserverPlaceRetour.setOnClickListener {
+            finish()
+        }
+
         binding.reserverPlaceReserverPlace.setOnClickListener {
             reserverPlace(trajet)
         }

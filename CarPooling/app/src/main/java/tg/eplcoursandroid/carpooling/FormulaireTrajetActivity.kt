@@ -45,6 +45,7 @@ class FormulaireTrajetActivity : AppCompatActivity() {
     lateinit private var destination : EditText
     private lateinit var lieuDepart : EditText
     private lateinit var heureDepart : EditText
+    private lateinit var places : EditText
     private lateinit var prix : EditText
 
 
@@ -68,30 +69,55 @@ class FormulaireTrajetActivity : AppCompatActivity() {
         binding.nouveauTrajetValider.setOnClickListener {
             methodeValider()
         }
-
     }
 
     private fun methodeValider() {
-        destination = findViewById(R.id.nouveau_trajet_destination)
-        lieuDepart = findViewById(R.id.nouveau_trajet_lieu_depart)
-        heureDepart = findViewById(R.id.nouveau_trajet_heure_depart)
-        prix = findViewById(R.id.nouveau_trajet_prix)
+        val destination = binding.nouveauTrajetDestination.text.toString()
+        val lieuDepart = binding.nouveauTrajetLieuDepart.text.toString()
+        val heureDepart = binding.nouveauTrajetHeureDepart.text.toString()
+        val places = binding.nouveauTrajetPlaces.text.toString()
+        val prix = binding.nouveauTrajetPrix.text.toString()
 
-        var trajet = Trajet()
-        trajet.destination = destination.text.toString()
-        trajet.lieuDepart = lieuDepart.text.toString()
-        trajet.heureDepart = heureDepart.text.toString()
-        trajet.prixParPassager = prix.text.toString().toDouble()
-        trajet.idConducteur = ObjetConducteur.loadConducteur(this).utilisateur?.uid.toString()
-        trajet.listIdPassager.add(trajet.idConducteur)
+        // Vérification des champs vides
+        if (destination.isEmpty()) {
+            Toast.makeText(this, "Veuillez entrer une destination", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (lieuDepart.isEmpty()) {
+            Toast.makeText(this, "Veuillez entrer un lieu de départ", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (heureDepart.isEmpty()) {
+            Toast.makeText(this, "Veuillez entrer une heure de départ", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (places.isEmpty() || places.toInt()<=0) {
+            Toast.makeText(this, "Veuillez entrer un nombre de places disponibles convenable", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (prix.isEmpty() || prix.toDouble()<=0 || prix.toDouble()>=100) {
+            Toast.makeText(this, "Veuillez entrer un prix convenable par passager", Toast.LENGTH_SHORT).show()
+            return
+        }
 
+        val trajet = Trajet().apply {
+            this.destination = destination
+            this.lieuDepart = lieuDepart
+            this.heureDepart = heureDepart
+            this.places = places
+            this.prixParPassager = prix.toDouble()
+            this.idConducteur = ObjetConducteur.loadConducteur(this@FormulaireTrajetActivity).utilisateur?.uid.toString()
+            this.listIdPassager.add(idConducteur)
+        }
 
         trajetService.ajouterTrajet(trajet)
 
-        destination.setText("")
-        lieuDepart.setText("")
-        heureDepart.setText("")
-        prix.setText("")
+        // Réinitialiser les champs après validation
+        binding.nouveauTrajetDestination.setText("")
+        binding.nouveauTrajetLieuDepart.setText("")
+        binding.nouveauTrajetHeureDepart.setText("")
+        binding.nouveauTrajetPlaces.setText("")
+        binding.nouveauTrajetPrix.setText("")
     }
 
     private fun methodeAnnuler() {

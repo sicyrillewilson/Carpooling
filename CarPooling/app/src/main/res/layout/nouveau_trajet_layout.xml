@@ -25,6 +25,7 @@
                 android:background="@drawable/angle_small_left"/>
 
             <TextView
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:gravity="center|start"
                 android:paddingHorizontal="10dp"
@@ -161,6 +162,36 @@
 
                 <LinearLayout
                     android:layout_marginVertical="5dp"
+                    android:id="@+id/nouveau_trajet_places_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_weight="0.24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Places : " />
+
+                    <EditText
+                        android:layout_weight="0.15"
+                        android:padding="8dp"
+                        android:background="@drawable/contour_circulaire"
+                        android:id="@+id/nouveau_trajet_places"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="Places disponibles..."
+                        android:inputType="number"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginVertical="5dp"
                     android:id="@+id/nouveau_trajet_prix_lay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -184,7 +215,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:minHeight="48dp"
-                        android:hint="Prix..."/>
+                        android:hint="Prix..."
+                        android:inputType="number"/>
 
                     <TextView
                         android:gravity="center"

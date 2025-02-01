@@ -25,6 +25,7 @@
                 android:background="@drawable/angle_small_left"/>
 
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/chat_layout_nom_chauffeur"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

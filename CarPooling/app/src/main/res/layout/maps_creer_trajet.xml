@@ -53,7 +53,7 @@
         android:layout_marginHorizontal="20dp"
         android:padding="10dp"
         android:id="@+id/maps_creer_trajet_formulaire_zone_haut"
-        android:background="@drawable/contour_circulaire"
+        android:background="@drawable/contour_circulaire_maps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -125,7 +125,7 @@
         android:layout_marginHorizontal="20dp"
         android:padding="10dp"
         android:id="@+id/maps_creer_trajet_formulaire_zone_bas"
-        android:background="@drawable/contour_circulaire"
+        android:background="@drawable/contour_circulaire_maps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">

@@ -47,6 +47,7 @@ class ListReservationAdapter(private val utilisateurs: MutableList<Utilisateur>,
                 currentTrajet.listIdPassager.add(utilisateur.uid.toString())
             }
             currentTrajet.listIdPassagerReservation.remove(utilisateur.uid.toString())
+            //currentTrajet.places = (currentTrajet.places.toInt() - 1).toString()
             trajetService.modifierTrajet(currentTrajet)
             utilisateurs.remove(utilisateur)
 
