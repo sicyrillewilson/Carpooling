@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -70,7 +71,7 @@ class ReserverPlaceActivity : AppCompatActivity() {
         setContentView(binding.root)
         setTitle(localClassName)
 
-        enableEdgeToEdge()
+        //enableEdgeToEdge()
 
         // Récupérer le trajet depuis l'Intent
         trajet = intent.getSerializableExtra("trajet") as Trajet
@@ -235,4 +236,15 @@ class ReserverPlaceActivity : AppCompatActivity() {
     private fun Int.dpToPx(context: Context): Int {
         return (this * context.resources.displayMetrics.density).toInt()
     }
+
+    /*override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) {
+            window.decorView.systemUiVisibility = (
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                            or View.SYSTEM_UI_FLAG_FULLSCREEN
+                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    )
+        }
+    }*/
 }

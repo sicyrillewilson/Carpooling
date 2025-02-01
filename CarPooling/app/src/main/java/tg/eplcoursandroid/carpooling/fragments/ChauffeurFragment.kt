@@ -62,6 +62,7 @@ class ChauffeurFragment : Fragment() {
                 }
             } ?: Log.e("ChauffeurFragment", "Conducteur non trouvé 2")
         }
+        currentConducteur = ObjetConducteur.loadConducteur(requireContext())
         // Inflate the layout for this fragment
         if (currentConducteur.utilisateur == null) {
             Log.e("ChauffeurFragment", "Conducteur non trouvé non trouvé 3")
@@ -77,6 +78,8 @@ class ChauffeurFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        currentConducteur = ObjetConducteur.loadConducteur(requireContext())
 
         if (currentConducteur.utilisateur == null) {
             nonConducteur()
