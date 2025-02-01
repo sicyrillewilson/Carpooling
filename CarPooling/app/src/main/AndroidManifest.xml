@@ -31,6 +31,9 @@
             android:name=".ReservationActivity"
             android:exported="false"/>
         <activity
+            android:name=".ItemReservationActivity"
+            android:exported="false"/>
+        <activity
             android:name=".FormulaireChauffeurActivity"
             android:exported="false"/>
         <activity

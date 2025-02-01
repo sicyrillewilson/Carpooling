@@ -98,14 +98,8 @@ class ReserverPlaceActivity : AppCompatActivity() {
             } ?: Log.e("HomeFragment", "Utilisateur non trouvé")
         }
         var trouver = false
-        /*for (idPassager in trajet.listIdPassagerReservation) {
-            if(idPassager == currentUtilisateur.uid.toString()){
-                trouver = true
-                break
-            }
-        }*/
 
-        if (trajet.listIdPassagerReservation.contains(currentUtilisateur.uid.toString())) {
+        if (trajet.listIdPassagerReservation.contains(currentUtilisateur.uid.toString()) || trajet.listIdPassager.contains(currentUtilisateur.uid.toString())) {
             trouver = true
         }
 

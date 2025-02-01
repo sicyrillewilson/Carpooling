@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 import tg.eplcoursandroid.carpooling.R
+import tg.eplcoursandroid.carpooling.models.Chat
 import tg.eplcoursandroid.carpooling.models.Conducteur
 import tg.eplcoursandroid.carpooling.models.Trajet
 import tg.eplcoursandroid.carpooling.service.ConducteurService
 
-class ChauffeurReservationItemAdapter (private val trajets: List<Trajet>) : RecyclerView.Adapter<ChauffeurReservationItemAdapter.TicketViewHolder>() {
+class ChauffeurReservationItemAdapter (private val trajets: List<Trajet>, private val onTrajetClick: (Trajet) -> Unit) : RecyclerView.Adapter<ChauffeurReservationItemAdapter.TicketViewHolder>() {
 
     // ViewHolder inner class
     class TicketViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -34,7 +35,7 @@ class ChauffeurReservationItemAdapter (private val trajets: List<Trajet>) : Recy
     }
 
     override fun onBindViewHolder(holder: TicketViewHolder, position: Int) {
-        val currentTicket = trajets[position]
+        val currentTicket = trajets.get(position)
         val conducteurService: ConducteurService = ConducteurService()
 
         conducteurService.trouverConducteur(currentTicket.idConducteur) { conducteur ->
@@ -59,6 +60,9 @@ class ChauffeurReservationItemAdapter (private val trajets: List<Trajet>) : Recy
                 // Si le conducteur n'est pas trouvé
                 println("Conducteur non trouvé")
             }
+        }
+        holder.itemView.setOnClickListener {
+            onTrajetClick(currentTicket)
         }
     }
 

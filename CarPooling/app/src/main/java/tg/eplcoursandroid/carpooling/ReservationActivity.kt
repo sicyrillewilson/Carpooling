@@ -47,11 +47,9 @@ class ReservationActivity : AppCompatActivity() {
     private val currentUser = authService.getCurrentUser()
     private var currentConducteur = Conducteur()
 
-    lateinit private var destination : EditText
-    private lateinit var lieuDepart : EditText
-    private lateinit var heureDepart : EditText
-    private lateinit var prix : EditText
-
+    private var trajets: MutableList<Trajet> = mutableListOf()
+    private var trajetsConducteur: MutableList<Trajet> = mutableListOf()
+    private var trajetsConducteurReservation: MutableList<Trajet> = mutableListOf()
 
 
     // Ajout de la variable pour suivre l'état du mot de passe
@@ -67,14 +65,10 @@ class ReservationActivity : AppCompatActivity() {
 
         currentConducteur = intent.getSerializableExtra("conducteur") as Conducteur
 
-        var trajetService = TrajetService()
-        var trajets: List<Trajet> = listOf()
-        var trajetsConducteur: MutableList<Trajet> = mutableListOf()
-        var trajetsConducteurReservation: MutableList<Trajet> = mutableListOf()
 
         trajetService.listerTrajets { traj ->
             if (traj != null) {
-                trajets = traj
+                trajets = traj.toMutableList()
 
                 for (trajet in trajets) {
                     if (trajet.idConducteur == currentConducteur.utilisateur?.uid) {
@@ -90,8 +84,14 @@ class ReservationActivity : AppCompatActivity() {
 
 
                 binding.reservationChauffeurRecyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                binding.reservationChauffeurRecyclerview.adapter = ChauffeurReservationItemAdapter(trajetsConducteurReservation)
+                binding.reservationChauffeurRecyclerview.adapter = ChauffeurReservationItemAdapter(trajetsConducteurReservation) { trajet ->
+                    val intent = Intent(this, ItemReservationActivity::class.java)
+                    intent.putExtra("trajet", trajet)
+                    startActivity(intent)
+                }
                 binding.reservationChauffeurRecyclerview.setHasFixedSize(true)
+
+                //trajetsConducteurReservation.clear()
 
             } else {
                 println("Trajets non trouvé")
@@ -100,30 +100,34 @@ class ReservationActivity : AppCompatActivity() {
 
     }
 
-    private fun methodeValider() {
-        destination = findViewById(R.id.nouveau_trajet_destination)
-        lieuDepart = findViewById(R.id.nouveau_trajet_lieu_depart)
-        heureDepart = findViewById(R.id.nouveau_trajet_heure_depart)
-        prix = findViewById(R.id.nouveau_trajet_prix)
+    override fun onResume() {
+        super.onResume()
 
-        var trajet = Trajet()
-        trajet.destination = destination.text.toString()
-        trajet.lieuDepart = lieuDepart.text.toString()
-        trajet.heureDepart = heureDepart.text.toString()
-        trajet.prixParPassager = prix.text.toString().toDouble()
-        trajet.idConducteur = ObjetConducteur.loadConducteur(this).utilisateur?.uid.toString()
+        trajetService.listerTrajets { traj ->
+            if (traj != null) {
+                trajets.clear() // Vider la liste avant de la recharger
+                trajetsConducteur.clear()
+                trajetsConducteurReservation.clear()
 
-        trajetService.ajouterTrajet(trajet)
+                trajets.addAll(traj)
 
-        destination.setText("")
-        lieuDepart.setText("")
-        heureDepart.setText("")
-        prix.setText("")
-    }
+                for (trajet in trajets) {
+                    if (trajet.idConducteur == currentConducteur.utilisateur?.uid) {
+                        trajetsConducteur.add(trajet)
+                    }
+                }
 
-    private fun methodeAnnuler() {
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
+                for (trajet in trajetsConducteur) {
+                    if(trajet.listIdPassagerReservation.isNotEmpty()){
+                        trajetsConducteurReservation.add(trajet)
+                    }
+                }
+
+                binding.reservationChauffeurRecyclerview.adapter?.notifyDataSetChanged()
+            } else {
+                println("Trajets non trouvés")
+            }
+        }
     }
 
 }
