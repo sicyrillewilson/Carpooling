@@ -80,6 +80,8 @@ class FormulaireTrajetActivity : AppCompatActivity() {
         trajet.heureDepart = heureDepart.text.toString()
         trajet.prixParPassager = prix.text.toString().toDouble()
         trajet.idConducteur = ObjetConducteur.loadConducteur(this).utilisateur?.uid.toString()
+        trajet.listIdPassager.add(trajet.idConducteur)
+
 
         trajetService.ajouterTrajet(trajet)
 

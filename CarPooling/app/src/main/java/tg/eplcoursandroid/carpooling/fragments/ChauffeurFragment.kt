@@ -103,13 +103,19 @@ class ChauffeurFragment : Fragment() {
             intent.putExtra("conducteur", currentConducteur)
             startActivity(intent)
         }
+
+        // Charger les trajets au début
+        chargerTrajets()
+    }
+
+
+    private fun chargerTrajets() {
         var trajetService = TrajetService()
-        var trajets: List<Trajet> = listOf()
         var trajetsConducteur: MutableList<Trajet> = mutableListOf()
 
-        trajetService.listerTrajets { traj ->
-            if (traj != null) {
-                trajets = traj
+        trajetService.listerTrajets { trajets ->
+            if (trajets != null) {
+                trajetsConducteur.clear() // Vider la liste avant de recharger
 
                 for (trajet in trajets) {
                     if (trajet.idConducteur == currentConducteur.utilisateur?.uid) {
@@ -117,14 +123,21 @@ class ChauffeurFragment : Fragment() {
                     }
                 }
 
+                // Mettre à jour l'adaptateur
                 binding2.fragmentChauffeurRecyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                 binding2.fragmentChauffeurRecyclerview.adapter = ChauffeurItemAdapter(trajetsConducteur)
                 binding2.fragmentChauffeurRecyclerview.setHasFixedSize(true)
-
+                binding2.fragmentChauffeurRecyclerview.adapter?.notifyDataSetChanged()
             } else {
-                println("Trajets non trouvé")
+                println("Trajets non trouvés")
             }
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        if (currentConducteur.utilisateur != null) {
+            chargerTrajets()
+        }
+    }
 }

@@ -67,34 +67,39 @@ class HomeFragment : Fragment() {
             binding.homeEmail.text = currentUtilisateur.email ?: "@emailNonAjouté"
         }
 
-        var trajetService = TrajetService()
-        var trajets: List<Trajet> = listOf()
+        chargerTrajets()
 
-        trajetService.listerTrajets { traj ->
-            if (traj != null) {
-                trajets = traj
+    }
 
-                val midIndex = traj.size / 2
+    private fun chargerTrajets() {
+        val trajetService = TrajetService()
 
-                val trajet1 = traj.subList(0, midIndex) // Première moitié
-                val trajet2 = traj.subList(midIndex, traj.size) // Deuxième moitié
+        trajetService.listerTrajets { trajets ->
+            if (trajets != null) {
+                requireActivity().runOnUiThread {
+                    val midIndex = trajets.size / 2
 
-                binding.homeRecyclerTrajet1.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                binding.homeRecyclerTrajet1.adapter = Trajet1Adapter(trajet1) {
-                        trajectoire -> onTrajetClicked(trajectoire)
+                    val trajet1 = trajets.subList(0, midIndex)
+                    val trajet2 = trajets.subList(midIndex, trajets.size)
+
+                    binding.homeRecyclerTrajet1.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                    binding.homeRecyclerTrajet1.adapter = Trajet1Adapter(trajet1) {
+                            trajectoire -> onTrajetClicked(trajectoire)
+                    }
+                    binding.homeRecyclerTrajet1.setHasFixedSize(true)
+                    binding.homeRecyclerTrajet1.adapter?.notifyDataSetChanged()
+
+                    binding.homeRecyclerTrajet2.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                    binding.homeRecyclerTrajet2.adapter = Trajet2Adapter(trajet2) {
+                            trajectoire -> onTrajetClicked(trajectoire)
+                    }
+                    binding.homeRecyclerTrajet2.setHasFixedSize(true)
+                    binding.homeRecyclerTrajet2.adapter?.notifyDataSetChanged()
                 }
-                binding.homeRecyclerTrajet1.setHasFixedSize(true)
-
-                binding.homeRecyclerTrajet2.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                binding.homeRecyclerTrajet2.adapter = Trajet2Adapter(trajet2) {
-                        trajectoire -> onTrajetClicked(trajectoire)
-                }
-                binding.homeRecyclerTrajet2.setHasFixedSize(true)
             } else {
-                println("Trajets non trouvé")
+                Log.e("HomeFragment", "Aucun trajet trouvé")
             }
         }
-
     }
 
     private fun onTrajetClicked(trajectoire: Trajet) {
@@ -103,4 +108,8 @@ class HomeFragment : Fragment() {
         startActivity(intent)
     }
 
+    override fun onStart() {
+        super.onStart()
+        chargerTrajets()
+    }
 }

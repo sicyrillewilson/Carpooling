@@ -9,6 +9,7 @@
     app:flow_horizontalBias="1">
 
     <LinearLayout
+        android:padding="10dp"
         android:paddingHorizontal="10dp"
         android:layout_width="300dp"
         android:layout_height="wrap_content"

@@ -62,4 +62,33 @@ class HistoriqueFragment : Fragment() {
 
     }
 
+    private fun chargerHistorique() {
+        val trajetService = TrajetService()
+        val trajetsHistorique: MutableList<Trajet> = mutableListOf()
+
+        trajetService.listerTrajets { trajets ->
+            if (trajets != null) {
+                requireActivity().runOnUiThread {
+                    trajetsHistorique.clear()
+
+                    for (trajet in trajets) {
+                        if ("1" in trajet.listIdPassager) {
+                            trajetsHistorique.add(trajet)
+                        }
+                    }
+                    binding.fragmentHistoriqueRecyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                    binding.fragmentHistoriqueRecyclerview.adapter = HistoriqueAdapter(trajetsHistorique)
+                    binding.fragmentHistoriqueRecyclerview.setHasFixedSize(true)
+                    binding.fragmentHistoriqueRecyclerview.adapter?.notifyDataSetChanged()
+                }
+            } else {
+                println("Trajets non trouvés")
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        chargerHistorique()
+    }
 }

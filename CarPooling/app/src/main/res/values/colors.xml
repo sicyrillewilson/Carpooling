@@ -5,7 +5,8 @@
     <color name="gray">#707070</color>
     <color name="transaprent">#00000000</color>
     <color name="textColor">#707070</color>
-    <color name="boutonColor1">#496566</color>
+    <color name="boutonColor1">#4A2AC7</color>
+    <color name="boutonColor1Old">#496566</color>
     <color name="boutonColor2">#EC6A6A</color>
     <color name="boutonColor3">#60D360</color>
     <color name="chatRight">#8BC28B</color>
