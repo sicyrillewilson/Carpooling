@@ -12,13 +12,13 @@
         android:padding="10dp"
         android:paddingHorizontal="10dp"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="130dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="vertical"
-        android:background="@drawable/contour_circulaire">
+        android:background="@drawable/background_image">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

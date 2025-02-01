@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Image en arrière-plan qui s'adapte -->
+    <item>
+        <bitmap
+            android:src="@drawable/maps"
+            android:gravity="fill_horizontal|fill_vertical" />
+    </item>
+
+    <!-- Shape avec coins arrondis et bordure -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="13dp"/>
+            <stroke android:color="@color/gray" android:width="1.5dp" />
+        </shape>
+    </item>
+
+</layer-list>

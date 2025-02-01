@@ -124,7 +124,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="13dp">
+        android:layout_margin="10dp">
         <!-- RecyclerView pour afficher la liste des plans -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_recycler_trajet1"
@@ -136,7 +136,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="13dp">
+        android:layout_margin="10dp">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_recycler_trajet2"
             android:layout_width="wrap_content"
