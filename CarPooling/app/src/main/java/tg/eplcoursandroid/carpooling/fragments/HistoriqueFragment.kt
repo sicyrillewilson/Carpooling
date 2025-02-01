@@ -1,14 +1,19 @@
 package tg.eplcoursandroid.carpooling.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import tg.eplcoursandroid.carpooling.ItemReservationActivity
+import tg.eplcoursandroid.carpooling.ReservationAttenteActivity
 import tg.eplcoursandroid.carpooling.adapter.HistoriqueAdapter
+import tg.eplcoursandroid.carpooling.database.ObjetUtilisateur
 import tg.eplcoursandroid.carpooling.databinding.FragmentHistoriqueBinding
 import tg.eplcoursandroid.carpooling.models.Trajet
+import tg.eplcoursandroid.carpooling.models.Utilisateur
 import tg.eplcoursandroid.carpooling.service.AuthService
 import tg.eplcoursandroid.carpooling.service.TrajetService
 import tg.eplcoursandroid.carpooling.service.UtilisateurService
@@ -21,6 +26,7 @@ class HistoriqueFragment : Fragment() {
     private val authService = AuthService()
     private val utilisateurService = UtilisateurService()
     private val currentUser = authService.getCurrentUser()
+    private var currentUtilisateur = Utilisateur()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,51 +41,39 @@ class HistoriqueFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var trajetService = TrajetService()
-        var trajets: List<Trajet> = listOf()
-        var trajetsHistorique: MutableList<Trajet> = mutableListOf()
-
-        trajetService.listerTrajets { traj ->
-            if (traj != null) {
-                trajets = traj
-
-                for (trajet in trajets) {
-                    for (idPassager in trajet.listIdPassager) {
-                        if (idPassager == "1"){
-                            trajetsHistorique.add(trajet)
-                        }
-                    }
-                }
-
-                binding.fragmentHistoriqueRecyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                binding.fragmentHistoriqueRecyclerview.adapter = HistoriqueAdapter(trajetsHistorique)
-                binding.fragmentHistoriqueRecyclerview.setHasFixedSize(true)
-
-            } else {
-                println("Trajets non trouvé")
-            }
-        }
+        chargerHistorique()
 
     }
 
     private fun chargerHistorique() {
+        currentUtilisateur = ObjetUtilisateur.loadUtilisateur(requireContext())
         val trajetService = TrajetService()
         val trajetsHistorique: MutableList<Trajet> = mutableListOf()
+        val trajetsHistoriqueAttente: MutableList<Trajet> = mutableListOf()
 
         trajetService.listerTrajets { trajets ->
             if (trajets != null) {
                 requireActivity().runOnUiThread {
                     trajetsHistorique.clear()
+                    trajetsHistoriqueAttente.clear()
 
                     for (trajet in trajets) {
-                        if ("1" in trajet.listIdPassager) {
+                        if (currentUtilisateur.uid in trajet.listIdPassager) {
                             trajetsHistorique.add(trajet)
+                        } else if(currentUtilisateur.uid in trajet.listIdPassagerReservation){
+                            trajetsHistoriqueAttente.add(trajet)
                         }
                     }
                     binding.fragmentHistoriqueRecyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                     binding.fragmentHistoriqueRecyclerview.adapter = HistoriqueAdapter(trajetsHistorique)
                     binding.fragmentHistoriqueRecyclerview.setHasFixedSize(true)
                     binding.fragmentHistoriqueRecyclerview.adapter?.notifyDataSetChanged()
+
+                    binding.fragmentHistoriqueAttente.setOnClickListener {
+                        val intent = Intent(requireContext(), ReservationAttenteActivity::class.java)
+                        intent.putExtra("trajets", ArrayList(trajetsHistoriqueAttente))
+                        startActivity(intent)
+                    }
                 }
             } else {
                 println("Trajets non trouvés")

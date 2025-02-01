@@ -25,6 +25,9 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAOVYRIgupAurZup5y1PRh8Ismb1A3lLao"/>
         <activity
+            android:name=".ReservationAttenteActivity"
+            android:exported="false"/>
+        <activity
             android:name=".ChatActivity"
             android:exported="false"/>
         <activity

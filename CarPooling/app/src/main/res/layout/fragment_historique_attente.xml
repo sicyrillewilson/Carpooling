@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:id="@+id/fragment_historique_attente_label"
+                    android:id="@+id/fragment_historique_attente_retour_label"
                     android:layout_marginHorizontal="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -32,10 +32,10 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:id="@+id/fragment_historique_attente"
+                        android:id="@+id/fragment_historique_attente_retour"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/en_attente"
+                        android:src="@drawable/angle_small_left"
                         android:layout_gravity="center"/>
 
                 </LinearLayout>
@@ -44,13 +44,13 @@
                     android:textColor="@color/black"
                     android:gravity="center"
                     android:layout_marginHorizontal="10dp"
-                    android:id="@+id/fragment_historique_historique"
+                    android:id="@+id/fragment_historique_attente_reservation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:text="Trajets effectués"
+                    android:text="En attente de reservation"
                     android:fontFamily="@font/itc_eras_bold"
                     android:textSize="20dp"
                     style="design"/>
@@ -64,7 +64,7 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/fragment_historique_recyclerview"
+                android:id="@+id/fragment_historique_attente_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
