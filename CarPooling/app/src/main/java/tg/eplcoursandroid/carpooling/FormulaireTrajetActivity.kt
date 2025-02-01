@@ -95,7 +95,7 @@ class FormulaireTrajetActivity : AppCompatActivity() {
             Toast.makeText(this, "Veuillez entrer un nombre de places disponibles convenable", Toast.LENGTH_SHORT).show()
             return
         }
-        if (prix.isEmpty() || prix.toDouble()<=0 || prix.toDouble()>=100) {
+        if (prix.isEmpty() || prix.toDouble()<=0 || prix.toDouble()<=100) {
             Toast.makeText(this, "Veuillez entrer un prix convenable par passager", Toast.LENGTH_SHORT).show()
             return
         }

@@ -80,7 +80,7 @@ class ReservationActivity : AppCompatActivity() {
                 }
 
                 for (trajet in trajetsConducteur) {
-                    if(trajet.listIdPassagerReservation.isNotEmpty()){
+                    if(trajet.places.toInt()>0 && trajet.listIdPassagerReservation.isNotEmpty()){
                         trajetsConducteurReservation.add(trajet)
                     }
                 }
@@ -106,6 +106,9 @@ class ReservationActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        var trajetsDisponibles : MutableList<Trajet> = mutableListOf()
+        trajetsDisponibles.clear()
+
         trajetService.listerTrajets { traj ->
             if (traj != null) {
                 trajets.clear() // Vider la liste avant de la recharger
@@ -121,7 +124,7 @@ class ReservationActivity : AppCompatActivity() {
                 }
 
                 for (trajet in trajetsConducteur) {
-                    if(trajet.listIdPassagerReservation.isNotEmpty()){
+                    if(trajet.places.toInt()>0 && trajet.listIdPassagerReservation.isNotEmpty()){
                         trajetsConducteurReservation.add(trajet)
                     }
                 }

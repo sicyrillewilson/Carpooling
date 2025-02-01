@@ -4,7 +4,7 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:fontFamily">@font/itc_eras_demi_regular</item>
-        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColor">@color/black</item>
 
         <item name="colorPrimary">@color/boutonColor1</item>
 
