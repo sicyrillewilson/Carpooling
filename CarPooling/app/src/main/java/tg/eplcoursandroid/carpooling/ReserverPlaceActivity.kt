@@ -70,6 +70,7 @@ class ReserverPlaceActivity : AppCompatActivity() {
         setContentView(binding.root)
         setTitle(localClassName)
 
+        enableEdgeToEdge()
 
         // Récupérer le trajet depuis l'Intent
         trajet = intent.getSerializableExtra("trajet") as Trajet

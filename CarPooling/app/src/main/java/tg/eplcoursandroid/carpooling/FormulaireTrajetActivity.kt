@@ -55,6 +55,8 @@ class FormulaireTrajetActivity : AppCompatActivity() {
         setContentView(binding.root)
         setTitle(localClassName)
 
+        enableEdgeToEdge()
+
         binding.nouveauTrajetRetour.setOnClickListener {
             finish()
         }

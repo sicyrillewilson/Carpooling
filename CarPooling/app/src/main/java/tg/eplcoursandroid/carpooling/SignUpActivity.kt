@@ -51,6 +51,9 @@ class SignUpActivity : AppCompatActivity() {
         binding = SignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTitle(localClassName)
+
+        enableEdgeToEdge()
+
         auth = FirebaseAuth.getInstance()
         //firestore = FirebaseFirestore.getInstance()
         pd = ProgressDialog(this)

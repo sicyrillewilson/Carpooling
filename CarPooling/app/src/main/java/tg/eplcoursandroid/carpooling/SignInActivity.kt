@@ -63,6 +63,9 @@ class SignInActivity : AppCompatActivity() {
         binding = SignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTitle(localClassName)
+
+        enableEdgeToEdge()
+
         fbauth = FirebaseAuth.getInstance()
         if (fbauth.currentUser!=null){
             startActivity(Intent(this, MainActivity::class.java))

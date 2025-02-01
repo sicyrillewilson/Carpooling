@@ -71,6 +71,8 @@ class ItemReservationActivity : AppCompatActivity() {
         setContentView(binding.root)
         setTitle(localClassName)
 
+        enableEdgeToEdge()
+
         binding.listeReservationChauffeurRetour.setOnClickListener {
             finish()
         }

@@ -51,6 +51,8 @@ class FormulaireChauffeurActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.sign_in)
 
+        enableEdgeToEdge()
+
         pds = ProgressDialog(this)
 
         binding = DevenirChauffeurLayoutBinding.inflate(layoutInflater)

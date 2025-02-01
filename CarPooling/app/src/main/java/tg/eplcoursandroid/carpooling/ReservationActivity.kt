@@ -59,6 +59,8 @@ class ReservationActivity : AppCompatActivity() {
         setContentView(binding.root)
         setTitle(localClassName)
 
+        enableEdgeToEdge()
+
         binding.reservationChauffeurRetour.setOnClickListener {
             finish()
         }
