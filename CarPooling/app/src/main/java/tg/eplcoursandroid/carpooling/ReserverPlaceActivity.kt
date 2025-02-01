@@ -174,8 +174,9 @@ class ReserverPlaceActivity : AppCompatActivity() {
         }
         for (chat in chatsList) {
             if ((chat.conducteurId == conducteur.utilisateur?.uid && chat.passagerId == currentUtilisateur.uid) || (chat.passagerId == conducteur.utilisateur?.uid && chat.conducteurId == currentUtilisateur.uid)){
-                demarrerChat(chat)
+            //if ( chat.passagerId == currentUtilisateur.uid || chat.conducteurId == currentUtilisateur.uid){
                 trouver = true
+                demarrerChat(chat)
                 break
             }
         }

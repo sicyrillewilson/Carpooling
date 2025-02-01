@@ -46,36 +46,45 @@ class ChatFragment : Fragment() {
         chatService.listerChats { chatList ->
             if (chatList != null) {
 
-                currentUtilisateur = ObjetUtilisateur.loadUtilisateur(requireContext())
-                // Vérifie si l'utilisateur est connecté
-                if(currentUtilisateur.uid == null) {
-                    currentUser?.uid?.let { uid ->
-                        utilisateurService.trouverUtilisateur(uid) { utilisateur ->
-                            requireActivity().runOnUiThread {
-                                if (utilisateur != null) {
-                                    ObjetUtilisateur.saveUtilisateur(requireContext(), utilisateur)
-                                    currentUtilisateur = utilisateur
-                                } else {
-                                    Log.e("HomeFragment", "Utilisateur non trouvé")
+                if (isAdded) {
+                    currentUtilisateur = ObjetUtilisateur.loadUtilisateur(requireContext())
+                    // Vérifie si l'utilisateur est connecté
+                    if (currentUtilisateur.uid == null) {
+                        currentUser?.uid?.let { uid ->
+                            utilisateurService.trouverUtilisateur(uid) { utilisateur ->
+                                requireActivity().runOnUiThread {
+                                    if (utilisateur != null) {
+                                        ObjetUtilisateur.saveUtilisateur(
+                                            requireContext(),
+                                            utilisateur
+                                        )
+                                        currentUtilisateur = utilisateur
+                                    } else {
+                                        Log.e("HomeFragment", "Utilisateur non trouvé")
+                                    }
                                 }
                             }
+                        } ?: Log.e("HomeFragment", "Utilisateur non trouvé")
+                    }
+
+                    chatUtilisateur.clear()
+
+                    for (chat in chatList) {
+                        if (chat.conducteurId == currentUtilisateur.uid || chat.passagerId == currentUtilisateur.uid) {
+                            chatUtilisateur.add(chat)
                         }
-                    } ?: Log.e("HomeFragment", "Utilisateur non trouvé")
-                }
+                    }
 
-                chatUtilisateur.clear()
-
-                for (chat in chatList) {
-                    if (chat.conducteurId == currentUtilisateur.uid || chat.passagerId == currentUtilisateur.uid) {
-                        chatUtilisateur.add(chat)
+                    if (isAdded) {
+                        binding.fragmentChatRecyclerview.layoutManager =
+                            LinearLayoutManager(context)
+                        binding.fragmentChatRecyclerview.adapter =
+                            ChatAdapter(chatUtilisateur) { chat ->
+                                onChatClicked(chat)
+                            }
+                        binding.fragmentChatRecyclerview.setHasFixedSize(true)
                     }
                 }
-
-                binding.fragmentChatRecyclerview.layoutManager = LinearLayoutManager(context)
-                binding.fragmentChatRecyclerview.adapter = ChatAdapter(chatUtilisateur) { chat ->
-                    onChatClicked(chat)
-                }
-                binding.fragmentChatRecyclerview.setHasFixedSize(true)
             } else {
                 Log.d("ChatFragment","Aucun chat trouvé")
             }
@@ -83,10 +92,15 @@ class ChatFragment : Fragment() {
     }
 
     private fun onChatClicked(chat: Chat) {
-        val intent = Intent(requireContext(), ChatActivity::class.java).apply {
-            putExtra("CHAT_ID", "${chat.conducteurId}_${chat.passagerId}") // Génération de l'ID unique du chat
+        if (isAdded) {
+            val intent = Intent(requireContext(), ChatActivity::class.java).apply {
+                putExtra(
+                    "CHAT_ID",
+                    "${chat.conducteurId}_${chat.passagerId}"
+                ) // Génération de l'ID unique du chat
+            }
+            startActivity(intent)
         }
-        startActivity(intent)
     }
     override fun onDestroyView() {
         super.onDestroyView()

@@ -16,7 +16,7 @@ import tg.eplcoursandroid.carpooling.models.Conducteur
 import tg.eplcoursandroid.carpooling.models.Trajet
 import tg.eplcoursandroid.carpooling.service.ConducteurService
 
-class Trajet1Adapter (private val trajets: List<Trajet>, private val onTrajetClicked: (Trajet) -> Unit) : RecyclerView.Adapter<Trajet1Adapter.TicketViewHolder>() {
+class Trajet1Adapter (private var trajets: MutableList<Trajet>, private val onTrajetClicked: (Trajet) -> Unit) : RecyclerView.Adapter<Trajet1Adapter.TicketViewHolder>() {
 
     // ViewHolder inner class
     class TicketViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -64,6 +64,11 @@ class Trajet1Adapter (private val trajets: List<Trajet>, private val onTrajetCli
         holder.itemView.setOnClickListener {
             onTrajetClicked(currentTrajet)
         }
+    }
+
+    fun updateData(newTrajets: List<Trajet>) {
+        trajets = ArrayList(newTrajets) // Crée une nouvelle liste pour éviter ConcurrentModificationException
+        notifyDataSetChanged() // Rafraîchir le RecyclerView
     }
 
     override fun getItemCount(): Int = trajets.size
