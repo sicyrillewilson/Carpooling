@@ -30,6 +30,10 @@ import tg.eplcoursandroid.carpooling.service.AuthService
 import tg.eplcoursandroid.carpooling.service.ConducteurService
 import tg.eplcoursandroid.carpooling.service.TrajetService
 import tg.eplcoursandroid.carpooling.service.UtilisateurService
+import android.app.Activity
+import android.net.Uri
+import android.provider.MediaStore
+import androidx.activity.result.contract.ActivityResultContracts
 
 class HomeFragment : Fragment() {
 
@@ -37,6 +41,8 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private var selectedImageUri: Uri? = null
 
     private val authService = AuthService()
     private val utilisateurService = UtilisateurService()
@@ -108,6 +114,22 @@ class HomeFragment : Fragment() {
                     }
                 }
             } ?: Log.e("ChauffeurFragment", "Conducteur non trouvé 2")
+        }
+
+        binding.homeProfil.setOnLongClickListener {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            pickImageLauncher.launch(intent)
+            true  // Retourne true pour indiquer que l'événement est consommé
+        }
+    }
+
+    private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            selectedImageUri = data?.data
+            selectedImageUri?.let {
+                binding.homeProfil.setImageURI(it)  // Remplace l’image actuelle par la nouvelle
+            }
         }
     }
 

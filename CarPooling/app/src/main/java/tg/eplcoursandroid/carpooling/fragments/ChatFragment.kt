@@ -75,6 +75,9 @@ class ChatFragment : Fragment() {
                         }
                     }
 
+                    // Trier les chats par timestamp décroissant (le plus récent en premier)
+                    chatUtilisateur.sortByDescending { it.timestamp }
+
                     if (isAdded) {
                         binding.fragmentChatRecyclerview.layoutManager =
                             LinearLayoutManager(context)
