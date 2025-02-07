@@ -10,15 +10,15 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import tg.eplcoursandroid.carpooling.database.ObjetUtilisateur
-//import com.google.firebase.firestore.FirebaseFirestore
-import tg.eplcoursandroid.carpooling.databinding.SignInBinding
 import tg.eplcoursandroid.carpooling.databinding.SignUpBinding
-import tg.eplcoursandroid.carpooling.models.Passager
-import tg.eplcoursandroid.carpooling.models.Trajet
 import tg.eplcoursandroid.carpooling.models.Utilisateur
 import tg.eplcoursandroid.carpooling.service.AuthService
 import tg.eplcoursandroid.carpooling.service.ConducteurService
@@ -30,8 +30,6 @@ class SignUpActivity : AppCompatActivity() {
     lateinit var binding: SignUpBinding
     lateinit var pd : ProgressDialog
     lateinit var auth : FirebaseAuth
-    //lateinit var firestore : FirebaseFirestore
-    //lateinit var name: String
     lateinit var nom: String
     lateinit var email: String
     lateinit var password: String
@@ -39,12 +37,17 @@ class SignUpActivity : AppCompatActivity() {
 
 
     private val authService = AuthService()
-    private val passagerService = PassagerService()
     private val utilisateurService = UtilisateurService()
-    private val conducteurService = ConducteurService()
 
     // Ajout de la variable pour suivre l'état du mot de passe
     private var isPasswordVisible = true
+
+
+    lateinit private var fbauth: FirebaseAuth
+
+    // Variables pour Google Sign-In
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private val RC_SIGN_IN = 1001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,8 +58,13 @@ class SignUpActivity : AppCompatActivity() {
 
         enableEdgeToEdge()
 
+        fbauth = FirebaseAuth.getInstance()
+        if (fbauth.currentUser!=null){
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
         auth = FirebaseAuth.getInstance()
-        //firestore = FirebaseFirestore.getInstance()
         pd = ProgressDialog(this)
 
         togglePasswordVisibility()
@@ -108,6 +116,18 @@ class SignUpActivity : AppCompatActivity() {
                 //createAnAccount(name, password, email)
                 createAnAccount(password, email, nom)
             }
+        }
+
+        // Configuration de Google Sign-In
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        binding.signUpContinueAvecGoogle.setOnClickListener {
+            signUpWithGoogle()
         }
     }
 
@@ -192,6 +212,58 @@ class SignUpActivity : AppCompatActivity() {
                 startActivity(Intent(this, SignInActivity::class.java))
             }
         }*/
+    }
+
+
+    private fun signUpWithGoogle() {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                if (account != null) {
+                    firebaseAuthWithGoogle(account)
+                }
+            } catch (e: ApiException) {
+                Toast.makeText(this, "Échec de l'authentification Google", Toast.LENGTH_SHORT).show()
+                Log.w("SignInActivity", "Google sign in failed", e)
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+        fbauth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val uid = fbauth.currentUser?.uid ?: return@addOnCompleteListener
+                    val email = account.email ?: "email_inconnu@example.com"
+                    val nom = account.displayName ?: "Nom inconnu"
+
+                    // Mise à jour ou ajout de l'utilisateur
+                    val utilisateur = Utilisateur(uid, email, nom, "")
+                    utilisateurService.ajouterUtilisateur(utilisateur, onSuccess = {
+                        Log.d("SignInActivity", "Utilisateur mis à jour ou ajouté avec succès : $nom ($email)")
+                    }, onFailure = { exception ->
+                        Log.e("SignInActivity", "Erreur lors de la mise à jour de l'utilisateur : ${exception.message}")
+                    })
+
+                    // Sauvegarder l'utilisateur localement
+                    ObjetUtilisateur.saveUtilisateur(this, utilisateur)
+
+                    // Rediriger vers MainActivity
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                } else {
+                    Toast.makeText(this, "Authentification avec Google échouée", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

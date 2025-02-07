@@ -27,6 +27,7 @@ import tg.eplcoursandroid.carpooling.models.Conducteur
 import tg.eplcoursandroid.carpooling.models.Trajet
 import tg.eplcoursandroid.carpooling.models.Utilisateur
 import tg.eplcoursandroid.carpooling.service.AuthService
+import tg.eplcoursandroid.carpooling.service.ConducteurService
 import tg.eplcoursandroid.carpooling.service.TrajetService
 import tg.eplcoursandroid.carpooling.service.UtilisateurService
 
@@ -43,6 +44,8 @@ class HomeFragment : Fragment() {
     private var currentUtilisateur = Utilisateur()
 
     private val trajetService = TrajetService()
+    private var currentConducteur = Conducteur()
+    private val conducteurService = ConducteurService()
     private var trajetsDisponibles: MutableList<Trajet> = mutableListOf()
     private var destinations: MutableList<String> = mutableListOf()
     private lateinit var adapter: ArrayAdapter<String>
@@ -88,6 +91,24 @@ class HomeFragment : Fragment() {
 
         chargerTrajets()
         setupRecherche()
+
+        // Vérifie si l'utilisateur est un conducteur
+        currentConducteur = ObjetConducteur.loadConducteur(requireContext())
+
+        if (currentConducteur.utilisateur == null) {
+            currentUser?.uid?.let { uid ->
+                conducteurService.trouverConducteur(uid) { conducteur ->
+                    requireActivity().runOnUiThread {
+                        if (conducteur != null) {
+                            currentConducteur = conducteur
+                            ObjetConducteur.saveConducteur(requireContext(), conducteur)
+                        } else {
+                            Log.e("ChauffeurFragment", "Conducteur non trouvé 1")
+                        }
+                    }
+                }
+            } ?: Log.e("ChauffeurFragment", "Conducteur non trouvé 2")
+        }
     }
 
     fun logout() {
@@ -111,8 +132,20 @@ class HomeFragment : Fragment() {
                 trajetsDisponibles.clear()
                 destinations.clear()
 
-                for (trajet in trajets) {
+                /*for (trajet in trajets) {
                     if (trajet.places?.toInt()!! > 0) {
+                        trajetsDisponibles.add(trajet)
+                        trajet.destination?.let { dest ->
+                            if (!destinations.contains(dest)) {
+                                destinations.add(dest)  // Éviter les doublons
+                            }
+                        }
+                    }
+                }*/
+
+                for (trajet in trajets) {
+                    val places = trajet.places?.toIntOrNull()
+                    if (places != null && places > 0) {
                         trajetsDisponibles.add(trajet)
                         trajet.destination?.let { dest ->
                             if (!destinations.contains(dest)) {

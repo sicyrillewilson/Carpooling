@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "552879216329",
+    "firebase_url": "https://carpooling-64059-default-rtdb.firebaseio.com",
     "project_id": "carpooling-64059",
     "storage_bucket": "carpooling-64059.firebasestorage.app"
   },
@@ -12,7 +13,20 @@
           "package_name": "tg.eplcoursandroid.carpooling"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "552879216329-7djpoqovfkhdl1a771a6vddvntmcrjq7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tg.eplcoursandroid.carpooling",
+            "certificate_hash": "bdc1b30cc27eeaed559149fc8702259f5bb7a127"
+          }
+        },
+        {
+          "client_id": "552879216329-5o7q59idtl7i7gn9bt6gqd381fh2nua3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBCahfwDhDvpcs5tfah2ksshuZXLb5LrjM"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552879216329-5o7q59idtl7i7gn9bt6gqd381fh2nua3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
